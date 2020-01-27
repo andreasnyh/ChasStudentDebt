@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::get('/newOrder', function () {
     return view('newOrder');
 });
+
+Route::get('/history', 'HistoryController@index');
+
+Route::get('/history/{id}', 'HistoryController@show');
+
+
