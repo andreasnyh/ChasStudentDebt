@@ -10,17 +10,19 @@
                     <th>Antal</th>
                     <th>Pris</th>
                 </tr>
+            </thead>
+            <tbody>
                 @foreach ($orders as $order)
                     <tr>
-                    <td>{{order.order_nr}}</td>
-                    <td>{{order.name}}</td>
-                    <td>{{order.class}}</td>
-                    <td>{{order.drink}}</td>
-                    <td>{{order.amount}}</td>
-                    <td>{{order.price}}</td>
+                        <td>{{order.order_nr}}</td>
+                        <td>{{order.name}}</td>
+                        <td>{{order.class}}</td>
+                        <td>{{order.drink}}</td>
+                        <td>{{order.amount}}</td>
+                        <td>{{order.price}}</td>
                     </tr> 
                 @endforeach
-            </thead>
+            </tbody>
         </table>
     </div>
     

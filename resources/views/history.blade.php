@@ -11,17 +11,19 @@
                     <th>Antal</th>
                     <th>Pris</th>
                 </tr>
+            </thead>
+            <tbody>
                 @foreach ($orders as $order)
-                    <tr>
+                <tr>
                     <td>{{order.ordernr}}</td>
                     <td>{{order.name}}</td>
                     <td>{{order.class}}</td>
                     <td>{{order.drink}}</td>
                     <td>{{order.amount}}</td>
                     <td>{{order.price}}</td>
-                    </tr> 
-                @endforeach
-            </thead>
+                </tr> 
+            @endforeach
+            </tbody>
         </table>
     </div>
     
