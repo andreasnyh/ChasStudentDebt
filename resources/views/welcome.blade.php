@@ -88,9 +88,9 @@
                 Chas Liqour Store
             </div>
             <div class="links">
-                <a href="https://laravel.com/docs">Lista Studenter</a>
-                <a href="https://laracasts.com">Ny beställning</a>
-                <a href="https://laravel-news.com">Drycker</a>
+                <a href="/students">Lista Studenter</a>
+                <a href="/order">Ny beställning</a>
+                <a href="/drinks">Drycker</a>
                 <a href="https://github.com/andreasnyh/ChasStudentDebt/">GitHub</a>
             </div>
         </div>
