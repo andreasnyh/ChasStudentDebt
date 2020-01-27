@@ -90,23 +90,28 @@
                             <option value="studentId">Student 1 FWD19</option>
                             <option value="studentId">Student 2 FWD19</option>
                             <option value="studentId">Student 3 FWD19</option>
-{{--                        @else--}}
+{{--                        @elseif--}}
                             <option value="studentId">Student 1</option>
                             <option value="studentId">Student 2</option>
                             <option value="studentId">Student 3</option>
+                            {{-- @elseif--}}{{--
+                                <option value="studentId">Student 1</option>
+                                <option value="studentId">Student 2</option>
+                                <option value="studentId">Student 3</option>--}}
 {{--                        @endif--}}
                     </select>
+                    <table border="1px"><br>
+                        <thead>Välj dryck</thead>
+                        <tr>
+                            <td>Öl</td><td><input type="number" name="beerQuantity" min="0" max="10"></td>
+                        </tr>
+                    </table>
+                    <button type="submit">Köp dryck</button>
                 </form>
-                {{--<div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>--}}
+
+
+
+
             </div>
         </div>
 <script>
