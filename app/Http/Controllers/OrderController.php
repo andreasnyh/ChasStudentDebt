@@ -51,11 +51,18 @@ class OrderController extends Controller
         //$order = History::where('studentID', $id)->all();
 //        $order = Order::where('orderID', $orderID)->get();
         $order = DB::table('orders')->where('orderID', $orderID)->first();
-//        dd($order);
+
+        $student = DB::table('students')->where('studentID', $order->student_ID)->first();
+
+        $drink = DB::table('drinks')->where('drinkID', $order->drink_ID)->first();
+
+//        dd($student);
         if (! $order){abort(404);}
 
         return view('orderMade', [
-            'order' => $order
+            'order' => $order,
+            'student' => $student,
+            'drink' => $drink
         ]);
 
     }

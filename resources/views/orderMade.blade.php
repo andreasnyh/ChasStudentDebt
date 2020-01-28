@@ -8,13 +8,16 @@
                 <h2>Tack för ditt köp</h2>
             </div>
 
-    <table>
-        <thead>Student {{ $order->student_ID }}'s Order</thead>
+    <table border="1px">
+        <thead><strong>{{ $student->name }}</strong>'s Order</thead>
         <tr>
             <td>Ordernummer</td><td>{{ $order->orderID }}</td>
         </tr>
         <tr>
-            <td>Dryck</td><td>{{ $order->drink_ID }}</td>
+            <td>Dryck</td><td>{{ $drink->name }}</td>
+        </tr>
+        <tr>
+            <td>Antal</td><td></td>
         </tr>
         <tr>
             <td>Date</td><td>{{ $order->date }}</td>
