@@ -1,29 +1,24 @@
 @extends('layout')
 @section('content')
     <div class="content">
-        <table>
+        <table border="1px";>
             <thead>
                 <tr>
+                    <th>Order ID</th>
                     <th>Datum</th>
-                    <th>OrderNr</th>
-                    <th>Dryck</th>
-                    <th>Antal</th>
-                    <th>Pris</th>
+                    <th>Insättning</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orders as $order)
-                    <tr>
-                        <td>{{order.order_nr}}</td>
-                        <td>{{order.name}}</td>
-                        <td>{{order.class}}</td>
-                        <td>{{order.drink}}</td>
-                        <td>{{order.amount}}</td>
-                        <td>{{order.price}}</td>
-                    </tr> 
-                @endforeach
+                <tr>
+                    <td>{{$order->order_ID}}</td>
+                    <td>{{$order->date}}</td>
+                    <td>{{$order->deposit}}:-</td>
+                </tr> 
+            @endforeach
             </tbody>
         </table>
+        <a href="/"><button>Tillbaka till Meny</button></a> 
     </div>
-    
 @endsection
