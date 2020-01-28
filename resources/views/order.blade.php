@@ -5,10 +5,10 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Köp en öl vettja!
+                    <h1>Köp något att dricka vettja!</h1>
                 </div>
 
-                <form>
+                <form id="orderForm">
                     <select name="studentClass" id="studentClass" type="text" required>
                         <option value="" disabled selected hidden>-- Välj Klass --</option>
 
@@ -52,12 +52,17 @@
                     </table>
                     <button type="submit">Köp dryck</button>
                 </form>
+                <form action="/">
+                    <button type="submit">Tillbaka till Meny</button>
+                </form>
+
 
 
 
 
             </div>
         </div>
+
 <script>
     let studentClassSelect = document.getElementById("studentClass");
         studentClassSelect.onchange = function () {
