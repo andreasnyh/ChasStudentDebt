@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -48,8 +49,11 @@ class OrderController extends Controller
     {
 //        dd($orderID);
         //$order = History::where('studentID', $id)->all();
-        $order = Order::where('orderID', $orderID)->get();
-        //dd($order);
+//        $order = Order::where('orderID', $orderID)->get();
+        $order = DB::table('orders')->where('orderID', $orderID)->first();
+//        dd($order);
+        if (! $order){abort(404);}
+
         return view('orderMade', [
             'order' => $order
         ]);

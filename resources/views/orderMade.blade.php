@@ -5,14 +5,22 @@
 
         <div class="content">
             <div class="title m-b-md">
-                <h1>Köp något att dricka vettja!</h1>
+                <h2>Tack för ditt köp</h2>
             </div>
 
-            <form id="orderMadeForm">
-                <p>Tack för din order med nr: {{ $order->date }}</p>
-                <button type="submit">Köp dryck</button>
-                <button type="reset">Ångra</button>
-            </form>
+    <table>
+        <thead>Student {{ $order->student_ID }}'s Order</thead>
+        <tr>
+            <td>Ordernummer</td><td>{{ $order->orderID }}</td>
+        </tr>
+        <tr>
+            <td>Dryck</td><td>{{ $order->drink_ID }}</td>
+        </tr>
+        <tr>
+            <td>Date</td><td>{{ $order->date }}</td>
+        </tr>
+    </table>
+
 
             <form action="/">
                 <button type="submit">Tillbaka till Meny</button>
