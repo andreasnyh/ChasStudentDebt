@@ -15,14 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('orderID');
-            $table->bigInteger('drink_ID')->unsigned();
             $table->bigInteger('student_ID')->unsigned();
+            $table->integer('beerQuantity');
+            $table->integer('wineQuantity');
+            $table->integer('softdrinkQuantity');
+            $table->integer('moonShineQuantity');
             $table->timestamp('date');
             $table->timestamps();
-
-            $table->foreign('drink_ID')
-                ->references('drinkID')
-                ->on('drinks');
 
             $table->foreign('student_ID')
                 ->references('studentID')
