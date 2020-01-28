@@ -44,10 +44,12 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Order $order)
+    public function show($orderID)
     {
-        //dd($order);
+//        dd($orderID);
         //$order = History::where('studentID', $id)->all();
+        $order = Order::where('orderID', $orderID)->get();
+        //dd($order);
         return view('orderMade', [
             'order' => $order
         ]);

@@ -9,7 +9,7 @@
             </div>
 
             <form id="orderMadeForm">
-                <p>Tack för din order med nr: {{ $order }}</p>
+                <p>Tack för din order med nr: {{ $order->date }}</p>
                 <button type="submit">Köp dryck</button>
                 <button type="reset">Ångra</button>
             </form>

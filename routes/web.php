@@ -19,7 +19,7 @@ Route::get('/order', function () {
     return view('order');
 });
 
-Route::get('/order/{orderId}', 'OrderController@show');
+Route::get('/order/{orderID}', 'OrderController@show');
 
 Route::get('/history', 'HistoryController@index');
 
