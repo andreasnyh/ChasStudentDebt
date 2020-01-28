@@ -15,6 +15,8 @@ class HistoryController extends Controller
     public function index()
     {
        $orders =  History::all();
+
+
        return view('history', [
            'orders' => $orders
        ]);
@@ -38,7 +40,7 @@ class HistoryController extends Controller
      */
     public function show($id)
     {
-        $orders = History::where('studentID', $id)->all();
+        $orders = History::where('student_ID', $id)->get();
         return view('studentHistory', [
             'orders' => $orders
         ]);
