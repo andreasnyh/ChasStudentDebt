@@ -17,7 +17,6 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('orderID');
             $table->bigInteger('drink_ID')->unsigned();
             $table->bigInteger('student_ID')->unsigned();
-            $table->integer('orderSum');
             $table->timestamp('date');
             $table->timestamps();
 
