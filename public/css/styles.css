@@ -1,4 +1,4 @@
-/* */
+/* START - Hides up and down arrows on input[type=number] */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -10,3 +10,4 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
+/* END - Hides up and down arrows on input[type=number] */
