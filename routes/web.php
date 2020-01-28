@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/show_drinks', 'DrinkController@index');
+Route::get('/drinks', 'DrinkController@index');
 
 Route::get('/order', function () {
     return view('order');
