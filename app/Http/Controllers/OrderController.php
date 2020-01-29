@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\Input;
 
@@ -37,8 +38,25 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-//        $post = Input::getOptions();
-        dd($request);
+        $data = new Order;
+//        $studentName = $request->input('studentName');
+//        dd($data::all());
+        $data->student_ID = $request->input('student_ID');
+//        $data->beer_quantity = $request->input('beerQuantity')
+          $beers = $request->input('beerQuantity');
+        if (/*$data->beer_quantity*/ $beers){
+            $data->drink_ID = 1;
+        }
+//        $data->wine_quantity = $request->input('wineQuantity');
+//        $data->soda_quantity = $request->input('sodaQuantity');
+//        dd([$studentName, $studentClass, $beers, $wines, $sodas]);
+        if ($data->save()) {
+//       dd($data->id);
+
+            return redirect('/order/'.$data->id);
+//            return view('show_order', ['order' => $data->id]);
+        };
+
     }
 
     /**

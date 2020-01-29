@@ -17,7 +17,7 @@
                     <option value="IK19">IK19</option>
 
                 </select>
-                <select name="studentName" id="studentName" type="text" required disabled>
+                <select name="student_ID" id="student_ID" type="text" required disabled>
 
                     <option value="" disabled selected hidden>-- Välj Student --</option>
 
@@ -30,9 +30,9 @@
                     <option value="student 2">Student 2</option>
                     <option value="student 3">Student 3</option>
                     @elseif--}}
-                        <option value="studentId">Student 1</option>
-                        <option value="studentId">Student 2</option>
-                        <option value="studentId">Student 3</option>
+                        <option value="1">Student 1</option>
+                        <option value="2">Student 2</option>
+                        <option value="3">Student 3</option>
 {{--                                            @endif--}}
                 </select>
                 <table border="1px"><br>
@@ -84,7 +84,7 @@
     <script>
         let studentClassSelect = document.getElementById("studentClass");
         studentClassSelect.onchange = function () {
-            document.getElementById("studentName").removeAttribute("disabled");
+            document.getElementById("student_ID").removeAttribute("disabled");
             return studentClassSelect.value;
         };
 
