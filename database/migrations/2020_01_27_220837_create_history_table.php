@@ -14,8 +14,8 @@ class CreateHistoryTable extends Migration
     public function up()
     {
         Schema::create('history', function (Blueprint $table) {
-            $table->bigInteger('student_ID')->unsigned();
-            $table->bigInteger('order_ID')->unsigned();
+            $table->bigInteger('id')->unsigned();
+            $table->bigInteger('student_id')->unsigned();
             $table->timestamp('date');
             $table->integer('deposit');
             $table->timestamps();
@@ -25,8 +25,8 @@ class CreateHistoryTable extends Migration
                 ->references('orderID')
                 ->on('orders');*/
 
-            $table->foreign('student_ID')
-                ->references('studentID')
+            $table->foreign('id')
+                ->references('id')
                 ->on('students');
 
         });
