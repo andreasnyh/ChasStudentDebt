@@ -21,6 +21,7 @@
             <h6> <a href="https://github.com/ByHT">Hung Ta</a></h6>
             <h6> <a href="https://github.com/erax83">Erik Axelsson</a></h6>
             <h6> <a href="https://github.com/DylanNore">Dylan Nore</a></h6>
+            <h6> <a href="https://github.com/Voldakka">Karl Falk</a></h6>
             <h6><a href="https://github.com/andreasnyh/ChasStudentDebt/">Project on Github</a></h6>
             <p>&copy; 2020 Chas Academy</p>
     </footer>

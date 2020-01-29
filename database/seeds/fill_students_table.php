@@ -46,5 +46,12 @@ class fill_students_table extends Seeder
             'email' => Str::random(10).'@gmail.com',
             'class' => 'Fullstack Web Developer'
         ]);
+
+        DB::table('students')->insert([
+            'studentID' => '6',
+            'name' => 'Karl Falk',
+            'email' => Str::random(10).'@chasacademy.se',
+            'class' => 'Fullstack Web Developer'
+        ]);
     }
 }
