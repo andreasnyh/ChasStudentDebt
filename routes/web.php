@@ -14,7 +14,16 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+//search option for student
+Route::get('/student', function(){
+    return view('students');
+});
+/*
+//list search
+Route::get('/student/list', 'StudentController@list');
+//show student
+Route::get('/student/list/{id}', 'StudentController@show');
+*/
 
 Route::get('/show_drinks', 'DrinkController@index');
 
