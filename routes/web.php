@@ -28,9 +28,7 @@ Route::get('/student/list/{id}', 'StudentController@show');
 Route::get('/show_drinks', 'DrinkController@index');
 
 // New order form
-Route::get('/order', function () {
-    return view('order');
-});
+Route::get('/order', 'OrderController@order');
 
 // Create a new order
 Route::get('/order/new', 'OrderController@store');

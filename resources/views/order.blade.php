@@ -12,15 +12,17 @@
                 <select name="studentClass" id="studentClass" type="text" required>
                     <option value="" disabled selected hidden>-- Välj Klass --</option>
 
-                    <option value="FWD18">FWD18</option>
-                    <option value="FWD19">FWD19</option>
-                    <option value="IK19">IK19</option>
+                    @foreach($eds as $ed)
+                        <option value="{{ $ed->name }}">{{$ed->name}}</option>
+                    @endforeach
 
                 </select>
                 <select name="student_ID" id="student_ID" type="text" required disabled>
 
                     <option value="" disabled selected hidden>-- Välj Student --</option>
 
+{{--                    Make name options dynamic based on selected studentClass--}}
+                    <option value="1">Student 1</option>
 {{--                    @if(  === 'FWD19')
                     <option value="studentId">Student 1 FWD19</option>
                     <option value="studentId">Student 2 FWD19</option>
@@ -29,11 +31,11 @@
                     <option value="student 1">Student 1</option>
                     <option value="student 2">Student 2</option>
                     <option value="student 3">Student 3</option>
-                    @elseif--}}
-                        <option value="1">Student 1</option>
+                    @elseif--
+
                         <option value="2">Student 2</option>
                         <option value="3">Student 3</option>
-{{--                                            @endif--}}
+{{--                                            @endif--}}}}
                 </select>
                 <table border="1px"><br>
                     <thead>Välj dryck</thead>
@@ -84,7 +86,7 @@
     <script>
         let studentClassSelect = document.getElementById("studentClass");
         studentClassSelect.onchange = function () {
-            document.getElementById("student_ID").removeAttribute("disabled");
+            let student = document.getElementById("student_ID").removeAttribute("disabled");
             return studentClassSelect.value;
         };
 

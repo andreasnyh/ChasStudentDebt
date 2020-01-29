@@ -30,6 +30,18 @@ class OrderController extends Controller
         //
     }
 
+    public function order() {
+
+        $eds = DB::table('educational_programes')->get();
+        $students = DB::table('students')->get();
+//        dd($ep);
+
+        return view('order', [
+            'eds' => $eds,
+            'students' => $students
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,6 +50,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $data = new Order;
 //        $studentName = $request->input('studentName');
 //        dd($data::all());
