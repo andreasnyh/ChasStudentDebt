@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\History;
 use App\Order;
+use App\Drink;
+use App\Student;
 use Illuminate\Support\Facades\DB;
 
 class HistoryController extends Controller
@@ -56,9 +58,17 @@ class HistoryController extends Controller
      */
     public function show($student_id)
     {
+
         // gets all Orders and payments for this specific student
-        $orders = Order::where('student_id', $student_id)->get();
+        $orders = Student::find($student_id)->orders;
+             
+    
+        // gets all the past orders and payments for this specific student
         $payments = History::where('student_id', $student_id)->get();
+
+        // fetching the price from Drinks table
+        $softdrink = Drink::select('cost')->where('name', 'Läsk')->first();
+        $moonshine = Drink::select('cost')->where('name', 'Moonshine')->first();
 
         //gets total amount of alcohol drinks
         $alcoholDrinks = Order::where('student_id', $student_id)
@@ -72,8 +82,7 @@ class HistoryController extends Controller
             ->sum('moonshine_Quantity');
 
         //calculate the total price
-        $totalprice = $alcoholDrinks * 10 + $softDrinkCount * 5 + $moonshineCount * 6;
-
+        $totalprice = $alcoholDrinks * 10 + $softDrinkCount * $softdrink->cost + $moonshineCount * $moonshine->cost;
 
         return view('studentHistory', [
             'orders' => $orders,
