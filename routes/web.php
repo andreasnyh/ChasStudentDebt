@@ -18,11 +18,19 @@ Route::get('/', function () {
 
 Route::get('/show_drinks', 'DrinkController@index');
 
+// New order form
 Route::get('/order', function () {
     return view('order');
 });
 
+// Create a new order
+Route::get('/order/new', 'OrderController@store');
+
+// Info about a specific order
 Route::get('/order/{orderID}', 'OrderController@show');
+
+// Shown after an order has been made
+Route::get('/order/made/{orderID}', 'OrderController@orderMade');
 
 Route::get('/history', 'HistoryController@index');
 

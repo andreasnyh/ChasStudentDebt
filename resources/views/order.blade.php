@@ -8,7 +8,7 @@
                 <h1>Köp något att dricka vettja!</h1>
             </div>
 
-            <form id="orderForm">
+            <form id="orderForm" action="/order/new" method="GET">
                 <select name="studentClass" id="studentClass" type="text" required>
                     <option value="" disabled selected hidden>-- Välj Klass --</option>
 
@@ -21,19 +21,19 @@
 
                     <option value="" disabled selected hidden>-- Välj Student --</option>
 
-                    {{--                        @if(  === 'FWD19')--}}
+{{--                    @if(  === 'FWD19')
                     <option value="studentId">Student 1 FWD19</option>
                     <option value="studentId">Student 2 FWD19</option>
                     <option value="studentId">Student 3 FWD19</option>
-                    {{--                        @elseif--}}
-                    <option value="studentId">Student 1</option>
-                    <option value="studentId">Student 2</option>
-                    <option value="studentId">Student 3</option>
-                    {{-- @elseif--}}{{--
+                                            @elseif
+                    <option value="student 1">Student 1</option>
+                    <option value="student 2">Student 2</option>
+                    <option value="student 3">Student 3</option>
+                    @elseif--}}
                         <option value="studentId">Student 1</option>
                         <option value="studentId">Student 2</option>
-                        <option value="studentId">Student 3</option>--}}
-                    {{--                        @endif--}}
+                        <option value="studentId">Student 3</option>
+{{--                                            @endif--}}
                 </select>
                 <table border="1px"><br>
                     <thead>Välj dryck</thead>
@@ -47,7 +47,7 @@
                         <td>10kr</td>
                         <td>
                             <button type="button" id="subtBeer">-</button>
-                            <input type="number" id="beerQuantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="beerQuantity" id="beerQuantity" placeholder="0" value="0" min="0" max="10">
                             <button type="button" id="addBeer">+</button>
                         </td>
                     </tr>
@@ -56,7 +56,7 @@
                         <td>10kr</td>
                         <td>
                             <button type="button" id="subtWine">-</button>
-                            <input type="number" id="wineQuantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="wineQuantity" id="wineQuantity" placeholder="0" value="0" min="0" max="10">
                             <button type="button" id="addWine">+</button>
                         </td>
                     </tr>
@@ -65,7 +65,7 @@
                         <td>5kr</td>
                         <td>
                             <button type="button" id="subtSoda">-</button>
-                            <input type="number" id="sodaQuantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="sodaQuantity" id="sodaQuantity" placeholder="0" value="0" min="0" max="10">
                             <button type="button" id="addSoda">+</button>
                         </td>
                     </tr>

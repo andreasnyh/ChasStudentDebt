@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\Console\Input\Input;
 
 class OrderController extends Controller
 {
@@ -36,7 +37,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        $post = Input::getOptions();
+        dd($request);
     }
 
     /**
@@ -47,9 +49,6 @@ class OrderController extends Controller
      */
     public function show($orderID)
     {
-//        dd($orderID);
-        //$order = History::where('studentID', $id)->all();
-//        $order = Order::where('orderID', $orderID)->get();
         $order = DB::table('orders')->where('orderID', $orderID)->first();
 
         $student = DB::table('students')->where('studentID', $order->student_ID)->first();
@@ -59,12 +58,16 @@ class OrderController extends Controller
 //        dd($student);
         if (! $order){abort(404);}
 
-        return view('orderMade', [
+        return view('show_order', [
             'order' => $order,
             'student' => $student,
             'drink' => $drink
         ]);
+    }
 
+    public function orderMade($id) {
+
+        return view('order_made', ['order' => $id]);
     }
 
     /**
