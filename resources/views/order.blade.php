@@ -49,7 +49,7 @@
                         <td>10kr</td>
                         <td>
                             <button type="button" id="subtBeer">-</button>
-                            <input type="number" name="beerQuantity" id="beerQuantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="beer_quantity" id="beer_quantity" placeholder="0" value="0" min="0" max="10">
                             <button type="button" id="addBeer">+</button>
                         </td>
                     </tr>
@@ -58,7 +58,7 @@
                         <td>10kr</td>
                         <td>
                             <button type="button" id="subtWine">-</button>
-                            <input type="number" name="wineQuantity" id="wineQuantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="wine_quantity" id="wine_quantity" placeholder="0" value="0" min="0" max="10">
                             <button type="button" id="addWine">+</button>
                         </td>
                     </tr>
@@ -67,7 +67,7 @@
                         <td>5kr</td>
                         <td>
                             <button type="button" id="subtSoda">-</button>
-                            <input type="number" name="sodaQuantity" id="sodaQuantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="softdrink_quantity" id="softdrink_quantity" placeholder="0" value="0" min="0" max="10">
                             <button type="button" id="addSoda">+</button>
                         </td>
                     </tr>
@@ -91,47 +91,47 @@
         };
 
         //    Add and subtract from Beer order
-        let beerQuantity = document.getElementById('beerQuantity');
+        let beer_quantity = document.getElementById('beer_quantity');
         let addBeer = document.getElementById('addBeer');
         let subtBeer = document.getElementById('subtBeer');
 
         addBeer.addEventListener("click", function () {
-            beerQuantity.value++;
+            beer_quantity.value++;
         });
 
         subtBeer.addEventListener("click", function () {
-            if (beerQuantity.value > 0) {
-                beerQuantity.value--;
+            if (beer_quantity.value > 0) {
+                beer_quantity.value--;
             }
         });
 
         //    Add and subtract from Wine order
-        let wineQuantity = document.getElementById('wineQuantity');
+        let wine_quantity = document.getElementById('wine_quantity');
         let addWine = document.getElementById('addWine');
         let subtWine = document.getElementById('subtWine');
 
         addWine.addEventListener("click", function () {
-            wineQuantity.value++;
+            wine_quantity.value++;
         });
 
         subtWine.addEventListener("click", function () {
-            if (wineQuantity.value > 0) {
-                wineQuantity.value--;
+            if (wine_quantity.value > 0) {
+                wine_quantity.value--;
             }
         });
 
         //    Add and subtract from Soda order
-        let sodaQuantity = document.getElementById('sodaQuantity');
+        let softdrink_quantity = document.getElementById('softdrink_quantity');
         let addSoda = document.getElementById('addSoda');
         let subtSoda = document.getElementById('subtSoda');
 
         addSoda.addEventListener("click", function () {
-            sodaQuantity.value++;
+            softdrink_quantity.value++;
         });
 
         subtSoda.addEventListener("click", function () {
-            if (sodaQuantity.value > 0) {
-                sodaQuantity.value--;
+            if (softdrink_quantity.value > 0) {
+                softdrink_quantity.value--;
             }
         });
 
