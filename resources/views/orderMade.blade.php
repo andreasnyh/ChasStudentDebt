@@ -8,19 +8,18 @@
                 <h2>Tack för ditt köp</h2>
             </div>
 
+
     <table border="1px">
-        <thead><strong>{{ $student->name }}</strong>'s Order</thead>
+        <thead><strong>{{ $student->name }}</strong>'s Order with number: <strong>{{ $order->orderID }}</strong></thead>
+
         <tr>
-            <td>Ordernummer</td><td>{{ $order->orderID }}</td>
+            <td>Dryck</td><td>Antal</td><td>Pris</td><td>Date</td><td>Total</td>
         </tr>
         <tr>
-            <td>Dryck</td><td>{{ $drink->name }}</td>
+            <td>{{ $drink->name }}</td><td>Fyll i</td><td>{{$drink->cost}}</td><td>{{ \Carbon\Carbon::parse($order->date)->format('Y-m-d')}}</td><td>Fyll i</td>
         </tr>
         <tr>
-            <td>Antal</td><td></td>
-        </tr>
-        <tr>
-            <td>Date</td><td>{{ $order->date }}</td>
+            <td colspan="4">Summa köp</td><td>Fyll i</td>
         </tr>
     </table>
 
