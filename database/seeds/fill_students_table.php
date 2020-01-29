@@ -16,14 +16,14 @@ class fill_students_table extends Seeder
             'id' => '1',
             'name' => 'Andreas Ny',
             'email' => Str::random(10).'@chasacademy.se',
-            'class' => 'Fullstack Web Developer'
+            'class' => 'FWD19'
         ]);
 
         DB::table('students')->insert([
             'id' => '2',
             'name' => 'Erik Axelsson',
             'email' => Str::random(10).'@chasacademy.se',
-            'class' => 'Fullstack Web Developer'
+            'class' => 'FWD19'
         ]);
 
         DB::table('students')->insert([
@@ -37,21 +37,21 @@ class fill_students_table extends Seeder
             'id' => '4',
             'name' => 'Hung Ta',
             'email' => Str::random(10).'@chasacademy.se',
-            'class' => 'Fullstack Web Developer'
+            'class' => 'FWD19'
         ]);
 
         DB::table('students')->insert([
             'id' => '5',
             'name' => 'Dylan Nore',
             'email' => Str::random(10).'@gmail.com',
-            'class' => 'Fullstack Web Developer'
+            'class' => 'FWD19'
         ]);
 
         DB::table('students')->insert([
             'id' => '6',
             'name' => 'Karl Falk',
             'email' => Str::random(10).'@gmail.com',
-            'class' => 'Fullstack Web Developer'
+            'class' => 'FWD19'
         ]);
 
     }
