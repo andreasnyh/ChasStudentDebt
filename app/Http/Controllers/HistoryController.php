@@ -16,10 +16,12 @@ class HistoryController extends Controller
     public function index()
     {
        $orders =  Order::all();
-        
+     
        return view('history', [
            'orders' => $orders
        ]);
+
+       
     }
 
     /**
@@ -55,8 +57,8 @@ class HistoryController extends Controller
      */
     public function show($id)
     {
-        $orders = Order::where('student_ID', $id)->get();
-        $payments = History::where('student_ID', $id)->get();
+        $orders = Order::where('student_id', $id)->get();
+        $payments = History::where('student_id', $id)->get();
 
         return view('studentHistory', [
             'orders' => $orders,

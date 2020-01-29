@@ -12,8 +12,8 @@
             <tbody>
                 @foreach ($orders as $order)
                 <tr>
-                    <td>{{$order->student_ID}}</td>
-                    <td>{{$order->orderID}}</td>
+                    <td>{{$order->student_id}}</td>
+                    <td>{{$order->id}}</td>
                     <td>{{$order->date}}</td>
                 </tr> 
                 @endforeach
