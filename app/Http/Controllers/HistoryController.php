@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\History;
+use App\Order;
 
 class HistoryController extends Controller
 {
@@ -14,9 +15,8 @@ class HistoryController extends Controller
      */
     public function index()
     {
-       $orders =  History::all();
-
-
+       $orders =  Order::all();
+        
        return view('history', [
            'orders' => $orders
        ]);
@@ -27,9 +27,24 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        $validatedAttributes = \request()->validate([
+            'student_ID' => 'required',
+            'order_ID' => 'required',
+            'deposit' => 'required'
+        ]);
+
+        $date = new DateTime('now');
+        $date->format('yy-mm-dd hh-MM-ss');
+    
+        $attributes = \array_push($validatedAttributes, $date);
+        
+        dd($attributes);
+
+        History::create($attributes);
+       
+        return view('paymentMade',$attributes);
     }
 
     /**
@@ -40,9 +55,12 @@ class HistoryController extends Controller
      */
     public function show($id)
     {
-        $orders = History::where('student_ID', $id)->get();
+        $orders = Order::where('student_ID', $id)->get();
+        $payments = History::where('student_ID', $id)->get();
+
         return view('studentHistory', [
-            'orders' => $orders
+            'orders' => $orders,
+            'payments' => $payments
         ]);
     }
 }

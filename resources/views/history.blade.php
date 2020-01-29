@@ -7,16 +7,14 @@
                     <th>Student ID</th>
                     <th>Order ID</th>
                     <th>Datum</th>
-                    <th>Insättning</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orders as $order)
                 <tr>
                     <td>{{$order->student_ID}}</td>
-                    <td>{{$order->order_ID}}</td>
+                    <td>{{$order->orderID}}</td>
                     <td>{{$order->date}}</td>
-                    <td>{{$order->deposit}}:-</td>
                 </tr> 
                 @endforeach
             </tbody>

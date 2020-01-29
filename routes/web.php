@@ -26,6 +26,8 @@ Route::get('/order/{orderID}', 'OrderController@show');
 
 Route::get('/history', 'HistoryController@index');
 
+Route::post('/history', 'HistoryController@store');
+
 Route::get('/history/{id}', 'HistoryController@show');
 
 
