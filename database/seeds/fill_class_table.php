@@ -20,11 +20,11 @@ class fill_class_table extends Seeder
         ]);
 
         DB::table('educational_programes')->insert([
-            'name' => 'IKD19'
+            'name' => 'IK19'
         ]);
 
         DB::table('educational_programes')->insert([
-            'name' => 'IKD1920',
+            'name' => 'IK20',
         ]);
     }
 }
