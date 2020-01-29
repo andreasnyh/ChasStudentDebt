@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\History;
 use App\Order;
+use Illuminate\Support\Facades\DB;
 
 class HistoryController extends Controller
 {
@@ -15,13 +16,11 @@ class HistoryController extends Controller
      */
     public function index()
     {
-       $orders =  Order::all();
-     
-       return view('history', [
-           'orders' => $orders
-       ]);
+        $orders =  Order::all();
 
-       
+        return view('history', [
+            'orders' => $orders
+        ]);
     }
 
     /**
@@ -37,16 +36,16 @@ class HistoryController extends Controller
             'deposit' => 'required'
         ]);
 
-        $date = new DateTime('now');
+        $date = new \DateTime('now');
         $date->format('yy-mm-dd hh-MM-ss');
-    
+
         $attributes = \array_push($validatedAttributes, $date);
-        
+
         dd($attributes);
 
         History::create($attributes);
-       
-        return view('paymentMade',$attributes);
+
+        return view('paymentMade', $attributes);
     }
 
     /**
@@ -55,14 +54,31 @@ class HistoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($student_id)
     {
-        $orders = Order::where('student_id', $id)->get();
-        $payments = History::where('student_id', $id)->get();
+        // gets all Orders and payments for this specific student
+        $orders = Order::where('student_id', $student_id)->get();
+        $payments = History::where('student_id', $student_id)->get();
+
+        //gets total amount of alcohol drinks
+        $alcoholDrinks = Order::where('student_id', $student_id)
+            ->sum(DB::raw('beer_quantity + wine_quantity'));
+
+        //gets total amount of soft drinks
+        $softDrinkCount = Order::where('student_id', '=', $student_id)
+            ->sum('softdrink_quantity');
+
+        $moonshineCount = Order::where('student_id', '=', $student_id)
+            ->sum('moonshine_Quantity');
+
+        //calculate the total price
+        $totalprice = $alcoholDrinks * 10 + $softDrinkCount * 5 + $moonshineCount * 6;
+
 
         return view('studentHistory', [
             'orders' => $orders,
-            'payments' => $payments
+            'payments' => $payments,
+            'totalPrice' => $totalprice
         ]);
     }
 }
