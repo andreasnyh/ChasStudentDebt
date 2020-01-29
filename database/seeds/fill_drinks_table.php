@@ -12,27 +12,27 @@ class fill_drinks_table extends Seeder
     public function run()
     {
         DB::table('drinks')->insert([
-            'drinkID' =>'1',
+            'id' =>'1',
             'name' => 'Öl',
             'cost' => '10',
             'stock' => '5',
         ]);
 
         DB::table('drinks')->insert([
-            'drinkID' => '2',
+            'id' => '2',
             'name' => 'Vin',
             'cost' => '10',
             'stock' => '12',
         ]);
         DB::table('drinks')->insert([
-            'drinkID' =>'3',
+            'id' =>'3',
             'name' => 'Läsk',
             'cost' => '5',
             'stock' => '25',
         ]);
 
         DB::table('drinks')->insert([
-            'drinkID' => '4',
+            'id' => '4',
             'name' => 'Moonshine',
             'cost' => '6',
             'stock' => '25',
