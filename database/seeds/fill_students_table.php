@@ -48,6 +48,7 @@ class fill_students_table extends Seeder
         ]);
 
         DB::table('students')->insert([
+
             'id' => '6',
             'name' => 'Karl Falk',
             'email' => Str::random(10).'@gmail.com',
