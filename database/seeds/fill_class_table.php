@@ -11,19 +11,19 @@ class fill_class_table extends Seeder
      */
     public function run()
     {
-        DB::table('class')->insert([
+        DB::table('educational_programes')->insert([
             'name' => 'Fullstack Web Developer 2019'
         ]);
 
-        DB::table('class')->insert([
+        DB::table('educational_programes')->insert([
             'name' => 'Fullstack Web Developer 2020'
         ]);
 
-        DB::table('class')->insert([
+        DB::table('educational_programes')->insert([
             'name' => 'Interaktionsdesigner 2019'
         ]);
 
-        DB::table('class')->insert([
+        DB::table('educational_programes')->insert([
             'name' => 'Interaktionsdesigner 2020',
         ]);
     }

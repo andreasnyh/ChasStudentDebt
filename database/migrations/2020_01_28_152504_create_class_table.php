@@ -13,7 +13,7 @@ class CreateClassTable extends Migration
      */
     public function up()
     {
-        Schema::create('class', function (Blueprint $table) {
+        Schema::create('educational_programes', function (Blueprint $table) {
             $table->string('name');
             $table->timestamps();
         });

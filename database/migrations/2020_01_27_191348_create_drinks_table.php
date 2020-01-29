@@ -14,7 +14,7 @@ class CreateDrinksTable extends Migration
     public function up()
     {
         Schema::create('drinks', function (Blueprint $table) {
-            $table->bigIncrements('drinkID');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->integer('cost');
             $table->integer('stock');
