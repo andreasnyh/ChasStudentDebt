@@ -17,6 +17,10 @@
         </tr>
         <tr>
             <td>{{ $drink->name }}</td><td>Fyll i</td><td>{{$drink->cost}}</td><td>{{ \Carbon\Carbon::parse($order->date)->format('Y-m-d')}}</td><td>Fyll i</td>
+            <td>{{ $drink->name }}</td><td>Fyll i</td><td>{{$drink->cost}}</td><td>{{ \Carbon\Carbon::parse($order->date)->format('Y-m-d')}}</td><td>Fyll i</td>
+            <td>{{ $drink->name }}</td><td>Fyll i</td><td>{{$drink->cost}}</td><td>{{ \Carbon\Carbon::parse($order->date)->format('Y-m-d')}}</td><td>Fyll i</td>
+            <td>{{ $drink->name }}</td><td>Fyll i</td><td>{{$drink->cost}}</td><td>{{ \Carbon\Carbon::parse($order->date)->format('Y-m-d')}}</td><td>Fyll i</td>
+
         </tr>
         <tr>
             <td colspan="4">Summa köp</td><td>Fyll i</td>
