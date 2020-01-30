@@ -7,7 +7,6 @@ use App\History;
 use App\Order;
 use App\Drink;
 use App\Student;
-use Illuminate\Support\Facades\DB;
 
 class HistoryController extends Controller
 {
@@ -74,27 +73,22 @@ class HistoryController extends Controller
 
         // fetching the price from Drinks table
         $beer = Drink::select('cost')->where('name', 'Öl')->first();
+        $wine = Drink::select('cost')->where('name', 'Vin')->first();
         $softdrink = Drink::select('cost')->where('name', 'Läsk')->first();
         $moonshine = Drink::select('cost')->where('name', 'Moonshine')->first();
-
-        //gets total amount of alcohol drinks
-        $alcoholDrinks = Order::where('student_id', $student_id)
-            ->sum(DB::raw('beer_quantity + wine_quantity'));
-
-        //gets total amount of soft drinks
-        $softDrinkCount = Order::where('student_id', '=', $student_id)
-            ->sum('softdrink_quantity');
-
-        $moonshineCount = Order::where('student_id', '=', $student_id)
-            ->sum('moonshine_quantity');
-
+        
+        $ordersPrice = 0;
         foreach ($orders as $order) {
             $sumBeer= $order->beer_quantity * $beer->cost;
-            $order->price = $sumBeer;
+            $sumWine = $order->wine_quantity * $wine->cost;
+            $sumMoonshine = $order->moonshine_quantity * $moonshine->cost;
+            $sumSoftdrink = $order->softdrink_quantity * $softdrink->cost;
+            $order->price = $sumBeer + $sumWine + $sumMoonshine + $sumSoftdrink;
+            $ordersPrice += $order->price;
         }
 
         //calculate the total debt
-        $totalprice = ($alcoholDrinks * 10 + $softDrinkCount * $softdrink->cost + $moonshineCount * $moonshine->cost)-$totalPayments;
+        $totalprice = $ordersPrice - $totalPayments;
 
         return view('studentHistory', [
             'orders' => $orders,
