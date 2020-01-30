@@ -7,11 +7,7 @@ use App\Drink;
 
 class DrinkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index() {
         $drinks =  Drink::get();
         
@@ -20,4 +16,29 @@ class DrinkController extends Controller
         ]);
         
     }
+
+    public function editDrink() {
+        return view('drinksEdit');
+    }
+
+    public function editDrinkMade() {
+        return view('drinksEditMade');
+    }
+
+    public function addDrink() {
+        return view('drinksAdd');
+    }
+
+    public function addDrinkMade() {
+        return view('drinksAddMade');
+    }
+
+    public function removeDrink() {
+        return view('drinksRemove');
+    }
+
+    public function removeDrinkMade() {
+        return view('drinksRemoveMade');
+    }
+
 }
