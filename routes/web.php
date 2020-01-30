@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
+
+=======
 //search option for student
 Route::get('/students', 'StudentController@index');
 /*
@@ -22,6 +25,7 @@ Route::get('/student/list', 'StudentController@list');
 //show student
 Route::get('/student/list/{id}', 'StudentController@show');
 */
+>>>>>>> master
 
 Route::get('/drinks', 'DrinkController@index');
 
@@ -33,7 +37,9 @@ Route::get('/order/{orderID}', 'OrderController@show');
 
 Route::get('/history', 'HistoryController@index');
 
-Route::get('/history/{id}', 'HistoryController@show');
+Route::post('/history', 'HistoryController@store');
+
+Route::get('/history/{student_id}', 'HistoryController@show');
 
 
 
