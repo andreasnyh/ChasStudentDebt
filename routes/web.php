@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 //search option for student
 Route::get('/students', 'StudentController@index');
+//list students for selected class
+Route::get('/students/{education}', 'StudentController@indexClass({education})');
+//add new student
+Route::get('/students/add', 'StudentController@create');
 /*
 //list search
 Route::get('/student/list', 'StudentController@list');

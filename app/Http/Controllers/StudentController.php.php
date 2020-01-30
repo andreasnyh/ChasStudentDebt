@@ -19,9 +19,19 @@ class StudentController extends Controller
     {
         $student = Student::all();
         $educational_programes = Educational_programes::all();
-        //$educational_programes = Educational_programe::all();
+
         return view('student', [
             'edu' => $educational_programes,
+            'student' => $student
+        ]);
+    }
+
+    public function indexClass()
+    {
+        $filter = $_POST['studentClass'];
+        $student = Student::where('class', 'LIKE %' . $filter . '%')->get();
+
+        return view('student', [
             'student' => $student
         ]);
     }
