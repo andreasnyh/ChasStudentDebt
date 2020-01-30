@@ -22,5 +22,53 @@ html, body, .container .content {
 }
 
 .main-heading {
-    font-size: 150px;
+    font-size: 100px;
+    text-transform: uppercase;
+    font-family: 'Squada One', cursive;
+} 
+
+.sub-heading{
+    color:#72B6D0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /*font-family: 'Fredoka One', cursive;*/ 
+    /*font-family: 'Luckiest Guy', cursive;*/
+    /*font-family: 'Orbitron', sans-serif;*/
+    /* font-family: 'Russo One', sans-serif; */
 }
+
+a {
+    color:#333A40;
+    text-transform: uppercase;
+}
+
+a:hover{
+    color:#72B6D0;
+    text-decoration: none;
+}
+
+.dark-text {
+    color:rgb(25, 67, 83);
+}
+
+/* Footer styles */
+
+footer > section > a {
+    color:#72B6D0;
+}
+
+footer > section > a:hover {
+    color:white;
+}
+
+.uppercase {
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.note {
+    position: absolute;
+    bottom:120px;
+    right:10px;
+
+}
+
