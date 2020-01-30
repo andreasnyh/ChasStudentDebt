@@ -2,7 +2,7 @@
 @section('content')
     <div class="content">
         <table border="1px";>
-            <h4>Köp</h4>
+        <h4>{{$name}}´s Historik</h4>
             <thead>
                 <tr>
                     <th>Order ID</th>
@@ -48,6 +48,13 @@
                 </tr>
             </tfoot>
         </table>
+        <form method="POST" action="/history">
+                @csrf
+                <label for="paymentInput">Belopp att betala:</label>
+                <input hidden type="text" name="student_id" id="student_id" value="{{$student_id}}">
+        <input type="number" name="deposit" id="deposit" placeholder="ex 10kr" min="0" max="{{$totalPrice}}">
+                <button type="submit">Betala</button>
+        </form>
         <a href="/"><button>Tillbaka till Meny</button></a>
     </div>
 @endsection

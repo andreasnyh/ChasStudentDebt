@@ -7,6 +7,7 @@ use App\History;
 use App\Order;
 use App\Drink;
 use App\Student;
+use DateTime;
 
 class HistoryController extends Controller
 {
@@ -31,24 +32,24 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedAttributes = \request()->validate([
-            'student_ID' => 'required',
-            'order_ID' => 'required',
-            'deposit' => 'required'
+        $name = Student::find($request->student_id)->name;
+        
+        $history = new History();
+        $history->student_id = $request->student_id;
+        $history->deposit = $request->deposit;
+        $history->save();
+       
+        $name = Student::find($request->student_id)->name;
+        
+        $time = new DateTime('now');
+        $time->format('Y-m-d H-i-s');
+        
+        return view('paymentMade', [
+            'student_id' => $history->student_id,
+            'deposit' => $history->deposit,
+            'time' => $time,
+            'name' => $name
         ]);
-
-        $date = new \DateTime('now');
-        $date->format('yy-mm-dd hh-MM-ss');
-
-
-
-        $attributes = \array_push($validatedAttributes, $date);
-
-        dd($attributes);
-
-        History::create($attributes);
-
-        return view('paymentMade', $attributes);
     }
 
     /**
@@ -60,12 +61,11 @@ class HistoryController extends Controller
     public function show($student_id)
     {
 
-        // gets all Orders and payments for this specific student
-        $orders = Student::find($student_id)->orders;
+        // gets all orders, payments and name of this specific student
+        $orders = Student::find($student_id)->orders->sortByDesc('date');
+        $name = Student::find($student_id)->name;
+        $payments = History::where('student_id', $student_id)->latest()->get();
 
-
-        // gets all the past orders and payments for this specific student
-        $payments = History::where('student_id', $student_id)->get();
         $totalPayments = 0;
         foreach ($payments as $payment) {
             $totalPayments += $payment->deposit;
@@ -78,6 +78,8 @@ class HistoryController extends Controller
         $moonshine = Drink::select('cost')->where('name', 'Moonshine')->first();
         
         $ordersPrice = 0;
+
+        // For each order row. Adding to sum.
         foreach ($orders as $order) {
             $sumBeer= $order->beer_quantity * $beer->cost;
             $sumWine = $order->wine_quantity * $wine->cost;
@@ -93,7 +95,9 @@ class HistoryController extends Controller
         return view('studentHistory', [
             'orders' => $orders,
             'payments' => $payments,
-            'totalPrice' => $totalprice
+            'totalPrice' => $totalprice,
+            'student_id' => $student_id,
+            'name' => $name
         ]);
     }
 }
