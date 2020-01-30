@@ -25,7 +25,7 @@ Route::get('/student/list', 'StudentController@list');
 Route::get('/student/list/{id}', 'StudentController@show');
 */
 
-Route::get('/show_drinks', 'DrinkController@index');
+Route::get('/drinks', 'DrinkController@index');
 
 Route::get('/order', function () {
     return view('order');
