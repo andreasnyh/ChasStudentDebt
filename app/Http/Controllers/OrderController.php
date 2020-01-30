@@ -27,14 +27,26 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
-    {
+    public function create() {
+
         $eds = DB::table('educational_programes')->get();
-        $students = DB::table('students')->get();
+        $studentsFWD19 = DB::table('students')->where('class', 'FWD19')->get();
+        $studentsFWD20 = DB::table('students')->where('class', 'FWD20')->get();
+        $studentsIK19 = DB::table('students')->where('class', 'IK19')->get();
+        $studentsIK20 = DB::table('students')->where('class', 'IK20')->get();
+
+        /*foreach ($eds as $ed){
+            ${'students' . $ed->name} = $ed->name;
+
+        }*/
+        //dd($studentsFWD19);
 
         $params = [
             'eds' => $eds,
-            'students' => $students
+            'studentsFWD19' => $studentsFWD19,
+            'studentsFWD20' => $studentsFWD20,
+            'studentsIK19' => $studentsIK19,
+            'studentsIK20' => $studentsIK20
         ];
 
         return view('order', $params);

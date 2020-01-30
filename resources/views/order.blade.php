@@ -21,36 +21,41 @@
 
                     <option value="" disabled selected hidden>-- Välj Student --</option>
 
-{{--                    Make name options dynamic based on selected studentClass--}}
-                    <option value="1">Student 1</option>
-{{--                    @if(  === 'FWD19')
-                    <option value="studentId">Student 1 FWD19</option>
-                    <option value="studentId">Student 2 FWD19</option>
-                    <option value="studentId">Student 3 FWD19</option>
-                                            @elseif
-                    <option value="student 1">Student 1</option>
-                    <option value="student 2">Student 2</option>
-                    <option value="student 3">Student 3</option>
-                    @elseif--
-
-                        <option value="2">Student 2</option>
-                        <option value="3">Student 3</option>
-{{--                                            @endif--}}}}
+                    {{--                    Make name options dynamic based on selected studentClass--}}
+                    {{--                    Loop students in fwd19--}}
+                    @foreach($studentsFWD19 as $student)
+                        <option class="FWD19" style="display: none" value="{{ $student->id }}">{{ $student->name }}</option>
+                    @endforeach
+                    {{--                    Loop students in fwd20--}}
+                    @foreach($studentsFWD20 as $student)
+                        <option class="FWD20" style="display: none" value="{{ $student->id }}">{{ $student->name }}</option>
+                    @endforeach
+                    {{--                    Loop students in fwd19--}}
+                    @foreach($studentsIK19 as $student)
+                        <option class="IK19" style="display: none" value="{{ $student->id }}">{{ $student->name }}</option>
+                    @endforeach
+                    {{--                    Loop students in fwd19--}}
+                    @foreach($studentsIK20 as $student)
+                        <option class="IK20" style="display: none" value="{{ $student->id }}">{{ $student->name }}</option>
+                    @endforeach
                 </select>
+
                 <table border="1px">
-                    Välj dryck
-                    <thead></thead>
+                    <thead>
+                    <th colspan="100%">Välj dryck</th>
                     <tr>
-                        <td>Dryck</td>
-                        <td>Pris</td>
-                        <td>Antal</td>
+                        <th>Dryck</th>
+                        <th>Pris</th>
+                        <th>Antal</th>
                     </tr>
+                    </thead>
                     <tr>
                         <td>Öl</td>
                         <td>10kr</td>
                         <td>
                             <button type="button" id="subtBeer">-</button>
-                            <input type="number" name="beer_quantity" id="beer_quantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="beer_quantity" id="beer_quantity" placeholder="0" value="0"
+                                   min="0" max="10">
                             <button type="button" id="addBeer">+</button>
                         </td>
                     </tr>
@@ -59,7 +64,8 @@
                         <td>10kr</td>
                         <td>
                             <button type="button" id="subtWine">-</button>
-                            <input type="number" name="wine_quantity" id="wine_quantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="wine_quantity" id="wine_quantity" placeholder="0" value="0"
+                                   min="0" max="10">
                             <button type="button" id="addWine">+</button>
                         </td>
                     </tr>
@@ -68,7 +74,8 @@
                         <td>5kr</td>
                         <td>
                             <button type="button" id="subtSoda">-</button>
-                            <input type="number" name="softdrink_quantity" id="softdrink_quantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="softdrink_quantity" id="softdrink_quantity" placeholder="0"
+                                   value="0" min="0" max="10">
                             <button type="button" id="addSoda">+</button>
                         </td>
                     </tr>
@@ -77,7 +84,8 @@
                         <td>6kr</td>
                         <td>
                             <button type="button" id="subtMoon">-</button>
-                            <input type="number" name="moonshine_quantity" id="moonshine_quantity" placeholder="0" value="0" min="0" max="10">
+                            <input type="number" name="moonshine_quantity" id="moonshine_quantity" placeholder="0"
+                                   value="0" min="0" max="10">
                             <button type="button" id="addMoon">+</button>
                         </td>
                     </tr>
@@ -95,8 +103,53 @@
 
     <script>
         let studentClassSelect = document.getElementById("studentClass");
+        let FWD19 = document.querySelectorAll(".FWD19");
+        let FWD20 = document.querySelectorAll(".FWD20");
+        let IK19 = document.querySelectorAll(".IK19");
+        let IK20 = document.querySelectorAll(".IK20");
+
         studentClassSelect.onchange = function () {
             let student = document.getElementById("student_ID").removeAttribute("disabled");
+
+            if (studentClassSelect.value == "FWD19") {
+                for (let i = 0; i < FWD19.length; i++) {
+                    FWD19[i].style.display = 'initial';
+                }
+            } else {
+                for (let i = 0; i < FWD19.length; i++) {
+                    FWD19[i].style.display = 'none';
+                }
+            }
+
+            if (studentClassSelect.value == "FWD20") {
+                for (let i = 0; i < FWD20.length; i++) {
+                    FWD20[i].style.display = 'initial';
+                }
+            } else {
+                for (let i = 0; i < FWD20.length; i++) {
+                    FWD20[i].style.display = 'none';
+                }
+            }
+
+            if (studentClassSelect.value == "IK19") {
+                for (let i = 0; i < IK19.length; i++) {
+                    IK19[i].style.display = 'initial';
+                }
+            } else {
+                for (let i = 0; i < IK19.length; i++) {
+                    IK19[i].style.display = 'none';
+                }
+            }
+
+            if (studentClassSelect.value == "IK20") {
+                for (let i = 0; i < IK20.length; i++) {
+                    IK20[i].style.display = 'initial';
+                }
+            } else {
+                for (let i = 0; i < IK20.length; i++) {
+                    IK20[i].style.display = 'none';
+                }
+            }
             return studentClassSelect.value;
         };
 
