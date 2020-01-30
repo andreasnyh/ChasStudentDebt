@@ -1,8 +1,8 @@
 @extends('layout')
 @section('content')
     <div class="content">
-        <table border="1px">
-            <thead>
+        <table border="1px" class="table table-striped">
+            <thead class="bg-dark text-light">
                 <tr>
                     <th>Student ID</th>
                     <th>Order ID</th>
@@ -19,6 +19,6 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="/"><button>Tillbaka till Meny</button></a> 
+        <a href="/"><button class="btn btn-lg bg-dark text-light">Tillbaka till Meny</button></a> 
     </div>
 @endsection

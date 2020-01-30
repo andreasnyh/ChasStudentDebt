@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-    <!-- Styles -->
+    {{-- !-- Styles -->
     <style>
         html,
         body {
@@ -65,9 +65,12 @@
         }
 
     </style>
-</head>
-
-<body>
+</head>  
+<body>--}}
+    @extends('layout')
+    @section('content')
+        
+    
     <div class="flex-center position-ref full-height">
         @if (Route::has('login'))
         <div class="top-right links">
@@ -96,6 +99,7 @@
             </div>
         </div>
     </div>
-</body>
+    @endsection
 
-</html>
+
+

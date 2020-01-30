@@ -11,3 +11,9 @@ input[type=number] {
     -moz-appearance:textfield;
 }
 /* END - Hides up and down arrows on input[type=number] */
+
+
+html, body {
+   min-height: 100vh;
+}
+
