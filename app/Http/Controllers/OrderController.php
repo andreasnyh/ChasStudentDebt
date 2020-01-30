@@ -25,30 +25,26 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
-    }
-
-    public function order() {
-
         $eds = DB::table('educational_programes')->get();
         $students = DB::table('students')->get();
-//        dd($ep);
 
-        return view('order', [
+        $params = [
             'eds' => $eds,
             'students' => $students
-        ]);
+        ];
+
+        return view('order', $params);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -62,20 +58,22 @@ class OrderController extends Controller
 
         if ($data->save()) {
 
-            return redirect('/order/'.$data->id);
+            return redirect('/order/' . $data->id);
         };
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param \App\Order $order
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($orderID)
     {
         $order = DB::table('orders')->where('id', $orderID)->first();
-        if (! $order){abort(404);}
+        if (!$order) {
+            abort(404);
+        }
 
         // Get student information
         $student = DB::table('students')->where('id', $order->student_id)->first();
@@ -117,7 +115,8 @@ class OrderController extends Controller
         return view('show_order', $params);
     }
 
-    public function orderMade($id) {
+    public function orderMade($id)
+    {
 
         return view('order_made', ['order' => $id]);
     }
@@ -125,7 +124,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
@@ -136,8 +135,8 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Order $order)
@@ -148,7 +147,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $order
+     * @param \App\Order $order
      * @return \Illuminate\Http\Response
      */
     public function destroy(Order $order)
