@@ -7,6 +7,7 @@ use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Type;
 use Symfony\Component\Console\Input\Input;
 
 class OrderController extends Controller
@@ -89,9 +90,7 @@ class OrderController extends Controller
         $student = DB::table('students')->where('id', $order->student_id)->first();
 //dd($order);
 
-        foreach ($order as $item) {
 
-        }
         $beerInfo = DB::table('drinks')->where('name', 'Öl')->first();
         $wineInfo = DB::table('drinks')->where('name', 'Vin')->first();
         $softdrinkInfo = DB::table('drinks')->where('name', 'Läsk')->first();
@@ -102,8 +101,14 @@ class OrderController extends Controller
         $softdrink_quantity = DB::table('orders')->select('softdrink_quantity')->where('id', $orderID)->first();
         $moonshine_quantity = DB::table('orders')->select('moonshine_quantity')->where('id', $orderID)->first();
 //        dd($beer_quantity);
-        $sum = ($beer_quantity->beer_quantity * $beerInfo->cost)+($wine_quantity->wine_quantity * $wineInfo->cost)+($softdrink_quantity->softdrink_quantity * $softdrinkInfo->cost)+($moonshine_quantity->moonshine_quantity * $moonshineInfo->cost);
-//        dd($sum);
+
+        $beerTotal = $beer_quantity->beer_quantity * $beerInfo->cost;
+        $wineTotal = $wine_quantity->wine_quantity * $wineInfo->cost;
+        $softdrinkTotal = $softdrink_quantity->softdrink_quantity * $softdrinkInfo->cost;
+        $moonshineTotal = $moonshine_quantity->moonshine_quantity * $moonshineInfo->cost;
+
+        $sum = $beerTotal + $wineTotal + $softdrinkTotal + $moonshineTotal;
+
         $params = [
             'order' => $order,
             'student' => $student,
@@ -115,9 +120,9 @@ class OrderController extends Controller
             'softdrink_quantity' => $softdrink_quantity,
             'moonshineInfo' => $moonshineInfo,
             'moonshine_quantity' => $moonshine_quantity,
-            'sum' => $sum // Fix this
+            'sum' => $sum // Access this in blade with just $sum
         ];
-        dd($params);
+//        dd($params);
         return view('show_order', $params);
     }
 

@@ -49,7 +49,7 @@
                 </tr>
                 <tr>
                     <td colspan="4">Summa köp</td>
-                    <td>{{ $order->sum }}</td>
+                    <td>{{ $sum }}</td>
                 </tr>
             </table>
 
