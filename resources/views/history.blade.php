@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <div class="content">
-        <table border="1px" class="table table-striped">
+        <table border="1px" class="table table-striped mt-5">
             <thead class="bg-dark text-light">
                 <tr>
                     <th>Student ID</th>
