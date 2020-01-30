@@ -19,7 +19,7 @@
                 </select>
                 <select name="student_ID" id="student_ID" type="text" required disabled>
 
-                    <option value="" disabled selected hidden>-- Välj Student --</option>
+                    <option class="studentPlaceholder" value="" disabled selected hidden>-- Välj Student --</option>
 
                     {{--                    Make name options dynamic based on selected studentClass--}}
                     {{--                    Loop students in fwd19--}}
