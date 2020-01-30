@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Class;
-use App\studentclass;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class StudentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
-     *
+     * StudentController
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $student = studentclass::all();
-
-
+        $student = DB::table('students')->get();
+        $educational_programes = DB::table('educational_programes')->get();
+        //$educational_programes = Educational_programe::all();
+        $map = ['student' => $student,
+            'educational_programes' => $educational_programes];
+        var_dump($educational_programes);
+        return view('student',$map);
     }
 
     /**

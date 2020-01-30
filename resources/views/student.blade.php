@@ -2,18 +2,22 @@
 
 @section('content')
     <div class="flex-center position-ref full-height">
-
         <div class="content">
             <div class="title m-b-md">
-                <h2>Vilken roll har du inom Chas Academy? Vem är du?</h2>
+                <h1>Hittar du inte dig själv? Sök här</h1>
             </div>
+
             <form id="orderForm">
                 <select name="studentClass" id="studentClass" type="text" required>
                     <option value="" disabled selected hidden>-- Välj Klass --</option>
+                    @foreach($educational_programes as $educational_programes)
+                        <option value="{{ $educational_programes->name }}">{{ $educational_programes->name }}</option>
+                    @foreach
 
-                    <option value="FWD18">FWD18</option>
-                    <option value="FWD19">FWD19</option>
-                    <option value="IK19">IK19</option>
+
+)
+
+
 
                 </select>
                 <select name="studentName" id="studentName" type="text" required disabled>
@@ -40,9 +44,10 @@
                 <button type="submit">Tillbaka till Meny</button>
             </form>
 
+
+
+
+
         </div>
     </div>
-
-
 @endsection
-<?php

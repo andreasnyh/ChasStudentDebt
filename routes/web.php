@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //search option for student
-Route::get('/student', function(){
-    return view('students');
-});
+Route::get('/students', 'StudentController@index');
 /*
 //list search
 Route::get('/student/list', 'StudentController@list');
