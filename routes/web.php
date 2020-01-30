@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //search option for student
-Route::get('/student', function(){
-    return view('students');
-});
+Route::get('/students', 'StudentController@index');
 /*
 //list search
 Route::get('/student/list', 'StudentController@list');
@@ -25,7 +23,7 @@ Route::get('/student/list', 'StudentController@list');
 Route::get('/student/list/{id}', 'StudentController@show');
 */
 
-Route::get('/show_drinks', 'DrinkController@index');
+Route::get('/drinks', 'DrinkController@index');
 
 // New order form
 Route::get('/order', 'OrderController@order');
@@ -41,7 +39,9 @@ Route::get('/order/made/{orderID}', 'OrderController@orderMade');
 
 Route::get('/history', 'HistoryController@index');
 
-Route::get('/history/{id}', 'HistoryController@show');
+Route::post('/history', 'HistoryController@store');
+
+Route::get('/history/{student_id}', 'HistoryController@show');
 
 
 

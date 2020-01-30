@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Class;
-use App\studentclass;
+use App\Educational_programes;
 use Illuminate\Http\Request;
+use App\Student;
+
 
 class StudentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
-     *
+     * StudentController
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $student = studentclass::all();
-
-
+        $student = Student::all();
+        $educational_programes = Educational_programes::all();
+        //$educational_programes = Educational_programe::all();
+        return view('student', [
+            'edu' => $educational_programes,
+            'student' => $student
+        ]);
     }
 
     /**
@@ -49,7 +55,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $student = students::where('studentID', $id)->get();
+        $student = Student::where('studentID', $id)->get();
         return view('showStudent', [
             'student' => $student
         ]);
