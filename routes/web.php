@@ -31,7 +31,7 @@ Route::get('/drinksEditMade', 'DrinkController@editDrinkMade');
 Route::get('/drinksAdd', 'DrinkController@addDrink');
 Route::get('/drinksAddMade', 'DrinkController@addDrinkMade');
 Route::get('/drinksRemove', 'DrinkController@removeDrink');
-Route::get('/drinksRemoveMade', 'DrinkController@removeDrinkMade');
+Route::get('/drinksRemoveMade/{name}', 'DrinkController@removeDrinkMade');
 
 Route::get('/order', function () {
     return view('order');

@@ -15,7 +15,6 @@ class DrinkController extends Controller
         return view('show_drinks', [
             'drinks' => $drinks
         ]);
-        
     }
 
     public function editDrink() {
@@ -40,10 +39,15 @@ class DrinkController extends Controller
     }
 
     public function removeDrink() {
-        return view('drinksRemove');
+        $drinks =  Drink::get();
+        
+        return view('drinksRemove', [
+            'drinks' => $drinks
+        ]);
     }
 
-    public function removeDrinkMade() {
+    public function removeDrinkMade($name) {
+        DB::table('drinks')->where('name', $name)->delete();
         return view('drinksRemoveMade');
     }
 

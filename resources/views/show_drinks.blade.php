@@ -18,8 +18,8 @@
                 </tr> 
             @endforeach
         </tbody>
-        
     </table>
+
     <form method="get" action="/drinksAdd">
         <input type="submit" value="Lägg Till"> 
     </form>
