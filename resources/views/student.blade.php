@@ -10,9 +10,9 @@
             <form id="orderForm">
                 <select name="studentClass" id="studentClass" type="text" required>
                     <option value="" disabled selected hidden>-- Välj Klass --</option>
-                    @foreach($educational_programes as $educational_programes)
-                        <option value="{{ $educational_programes->name }}">{{ $educational_programes->name }}</option>
-                    @foreach
+                   @foreach ($edu as $program)
+                    <option value="{{ $program->name }}">{{ $program->name }}</option> 
+                   @endforeach
 
 
 )
