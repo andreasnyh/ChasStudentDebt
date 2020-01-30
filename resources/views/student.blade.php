@@ -29,7 +29,7 @@
                 <tbody>
                 @foreach ($students as $user)
                     <tr class="studentsALL">
-                        <td>{{$user->name}}</td>
+                    <td><a href="/history/{{$user->id}}">{{$user->name}}</a></td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->class}}</td>
                     </tr>
@@ -54,7 +54,7 @@
 
 
 
-            <form method="get" action="GET/student/{name}">
+            <form method="get" action="/student/{name}">
                 <label for ="student_search">Sök:</label>
                 <input type="text" class="search" id="student_search">
                 <button type="submit">Sök student</button>

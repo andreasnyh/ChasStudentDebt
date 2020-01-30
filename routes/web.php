@@ -19,7 +19,7 @@ Route::get('/students', 'StudentController@index');
 //list students for selected class
 Route::get('/students/{education}', 'StudentController@indexClass($education)');
 // search for student by string
-Route::get('/students/{name}', 'StudentController@show($name)');
+Route::get('/students/{name}', 'StudentController@show');
 //add new student
 Route::get('/students/add', 'StudentController@create');
 /*
