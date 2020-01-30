@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Educational_programes;
 use Illuminate\Http\Request;
 use App\Student;
+use Illuminate\Support\Facades\DB;
 
 
 class StudentController extends Controller
@@ -17,13 +18,23 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::all();
-        $educational_programes = Educational_programes::all();
+        $students = DB::table('students')->get();
+        $eds = DB::table('educational_programes')->get();
+        $studentsFWD19 = DB::table('students')->where('class', 'FWD19')->get();
+        $studentsFWD20 = DB::table('students')->where('class', 'FWD20')->get();
+        $studentsIK19 = DB::table('students')->where('class', 'IK19')->get();
+        $studentsIK20 = DB::table('students')->where('class', 'IK20')->get();
 
-        return view('student', [
-            'edu' => $educational_programes,
-            'student' => $student
-        ]);
+        $params = [
+            'students'=> $students,
+            'eds' => $eds,
+            'studentsFWD19' => $studentsFWD19,
+            'studentsFWD20' => $studentsFWD20,
+            'studentsIK19' => $studentsIK19,
+            'studentsIK20' => $studentsIK20
+        ];
+
+        return view('student', $params);
     }
 
     public function indexClass($class)

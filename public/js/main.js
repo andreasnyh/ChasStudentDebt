@@ -3,13 +3,24 @@ let FWD19 = document.querySelectorAll(".FWD19");
 let FWD20 = document.querySelectorAll(".FWD20");
 let IK19 = document.querySelectorAll(".IK19");
 let IK20 = document.querySelectorAll(".IK20");
+let studentsALL = document.querySelectorAll(".studentsALL");
 
 studentClassSelect.onchange = function () {
     let student = document.getElementById("student_ID").removeAttribute("disabled");
 
+    if (studentClassSelect.value == "students_ALL") {
+        for (let i = 0; i < studentsALL.length; i++) {
+            studentsALL[i].style.display = '';
+        }
+    } else {
+        for (let i = 0; i < studentsALL.length; i++) {
+            studentsALL[i].style.display = 'none';
+        }
+    }
+
     if (studentClassSelect.value == "FWD19") {
         for (let i = 0; i < FWD19.length; i++) {
-            FWD19[i].style.display = 'initial';
+            FWD19[i].style.display = '';
         }
     } else {
         for (let i = 0; i < FWD19.length; i++) {
@@ -19,7 +30,7 @@ studentClassSelect.onchange = function () {
 
     if (studentClassSelect.value == "FWD20") {
         for (let i = 0; i < FWD20.length; i++) {
-            FWD20[i].style.display = 'initial';
+            FWD20[i].style.display = '';
         }
     } else {
         for (let i = 0; i < FWD20.length; i++) {
@@ -29,7 +40,7 @@ studentClassSelect.onchange = function () {
 
     if (studentClassSelect.value == "IK19") {
         for (let i = 0; i < IK19.length; i++) {
-            IK19[i].style.display = 'initial';
+            IK19[i].style.display = '';
         }
     } else {
         for (let i = 0; i < IK19.length; i++) {
@@ -39,7 +50,7 @@ studentClassSelect.onchange = function () {
 
     if (studentClassSelect.value == "IK20") {
         for (let i = 0; i < IK20.length; i++) {
-            IK20[i].style.display = 'initial';
+            IK20[i].style.display = '';
         }
     } else {
         for (let i = 0; i < IK20.length; i++) {

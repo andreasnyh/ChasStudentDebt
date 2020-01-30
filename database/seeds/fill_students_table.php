@@ -55,5 +55,20 @@ class fill_students_table extends Seeder
             'class' => 'FWD19'
         ]);
 
+        DB::table('students')->insert([
+            'id' => '7',
+            'name' => 'Dylan King',
+            'email' => Str::random(10).'@gmail.com',
+            'class' => 'FWD20'
+        ]);
+
+        DB::table('students')->insert([
+
+            'id' => '8',
+            'name' => 'Karl Queen',
+            'email' => Str::random(10).'@gmail.com',
+            'class' => 'FWD20'
+        ]);
+
     }
 }
