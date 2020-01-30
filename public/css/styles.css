@@ -17,8 +17,8 @@ input[type=number] {
     position: relative;
     top:8px;
 }
-html, body, .container .content {
-   min-height: 70vh;
+html, body, .content {
+   min-height: 100vh;
 }
 
 .main-heading {
@@ -67,7 +67,7 @@ footer > section > a:hover {
 
 .note {
     position: absolute;
-    bottom:120px;
+    bottom:-140px;
     right:10px;
 
 }
