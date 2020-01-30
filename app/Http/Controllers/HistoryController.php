@@ -63,8 +63,8 @@ class HistoryController extends Controller
 
         // gets all Orders and payments for this specific student
         $orders = Student::find($student_id)->orders;
-             
-    
+
+
         // gets all the past orders and payments for this specific student
         $payments = History::where('student_id', $student_id)->get();
         $totalPayments = 0;
@@ -73,6 +73,7 @@ class HistoryController extends Controller
         }
 
         // fetching the price from Drinks table
+        $beer = Drink::select('cost')->where('name', 'Öl')->first();
         $softdrink = Drink::select('cost')->where('name', 'Läsk')->first();
         $moonshine = Drink::select('cost')->where('name', 'Moonshine')->first();
 
@@ -85,7 +86,12 @@ class HistoryController extends Controller
             ->sum('softdrink_quantity');
 
         $moonshineCount = Order::where('student_id', '=', $student_id)
-            ->sum('moonshine_Quantity');
+            ->sum('moonshine_quantity');
+
+        foreach ($orders as $order) {
+            $sumBeer= $order->beer_quantity * $beer->cost;
+            $order->price = $sumBeer;
+        }
 
         //calculate the total debt
         $totalprice = ($alcoholDrinks * 10 + $softDrinkCount * $softdrink->cost + $moonshineCount * $moonshine->cost)-$totalPayments;

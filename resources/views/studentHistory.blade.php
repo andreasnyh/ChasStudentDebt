@@ -21,10 +21,10 @@
                     <td>{{$order->date}}</td>
                     <td>{{$order->beer_quantity}}</td>
                     <td>{{$order->wine_quantity}}</td>
-                    <td>{{$order->moonshine_Quantity}}</td>
+                    <td>{{$order->moonshine_quantity}}</td>
                     <td>{{$order->softdrink_quantity}}</td>
                     <td>{{$order->price}}</td>
-                </tr> 
+                </tr>
             @endforeach
             </tbody>
             <thead>
@@ -48,6 +48,6 @@
                 </tr>
             </tfoot>
         </table>
-        <a href="/"><button>Tillbaka till Meny</button></a> 
+        <a href="/"><button>Tillbaka till Meny</button></a>
     </div>
 @endsection
