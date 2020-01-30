@@ -71,6 +71,15 @@
                             <button type="button" id="addSoda">+</button>
                         </td>
                     </tr>
+                    <tr>
+                        <td>Moonshine</td>
+                        <td>6kr</td>
+                        <td>
+                            <button type="button" id="subtMoon">-</button>
+                            <input type="number" name="moonshine_quantity" id="moonshine_quantity" placeholder="0" value="0" min="0" max="10">
+                            <button type="button" id="addMoon">+</button>
+                        </td>
+                    </tr>
                 </table>
                 <button type="submit">Köp dryck</button>
                 <button type="reset">Ångra</button>
@@ -96,7 +105,9 @@
         let subtBeer = document.getElementById('subtBeer');
 
         addBeer.addEventListener("click", function () {
-            beer_quantity.value++;
+            if (beer_quantity.value < 10) {
+                beer_quantity.value++;
+            }
         });
 
         subtBeer.addEventListener("click", function () {
@@ -111,7 +122,9 @@
         let subtWine = document.getElementById('subtWine');
 
         addWine.addEventListener("click", function () {
-            wine_quantity.value++;
+            if (wine_quantity.value < 10) {
+                wine_quantity.value++;
+            }
         });
 
         subtWine.addEventListener("click", function () {
@@ -126,12 +139,31 @@
         let subtSoda = document.getElementById('subtSoda');
 
         addSoda.addEventListener("click", function () {
-            softdrink_quantity.value++;
+            if (softdrink_quantity.value < 10) {
+                softdrink_quantity.value++;
+            }
         });
 
         subtSoda.addEventListener("click", function () {
             if (softdrink_quantity.value > 0) {
                 softdrink_quantity.value--;
+            }
+        });
+
+        //    Add and subtract from Moonshine order
+        let moonshine_quantity = document.getElementById('moonshine_quantity');
+        let addMoon = document.getElementById('addMoon');
+        let subtMoon = document.getElementById('subtMoon');
+
+        addMoon.addEventListener("click", function () {
+            if (moonshine_quantity.value < 10) {
+                moonshine_quantity.value++;
+            }
+        });
+
+        subtMoon.addEventListener("click", function () {
+            if (moonshine_quantity.value > 0) {
+                moonshine_quantity.value--;
             }
         });
 
