@@ -27,6 +27,20 @@
                 </tr> 
             @endforeach
             </tbody>
+            <thead>
+                <tr>
+                    <th colspan="4">Datum</th>
+                    <th colspan="3">Inbetalning</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($payments as $payment)
+                    <tr>
+                        <td colspan="4">{{$payment->date}}</td>
+                        <td colspan="3">{{$payment->deposit}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
             <tfoot>
                 <tr>
                     <th colspan="6">Total skuld</th>

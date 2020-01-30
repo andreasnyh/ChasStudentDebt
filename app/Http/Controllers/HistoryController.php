@@ -41,6 +41,8 @@ class HistoryController extends Controller
         $date = new \DateTime('now');
         $date->format('yy-mm-dd hh-MM-ss');
 
+
+
         $attributes = \array_push($validatedAttributes, $date);
 
         dd($attributes);
@@ -65,6 +67,10 @@ class HistoryController extends Controller
     
         // gets all the past orders and payments for this specific student
         $payments = History::where('student_id', $student_id)->get();
+        $totalPayments = 0;
+        foreach ($payments as $payment) {
+            $totalPayments += $payment->deposit;
+        }
 
         // fetching the price from Drinks table
         $softdrink = Drink::select('cost')->where('name', 'Läsk')->first();
@@ -81,8 +87,8 @@ class HistoryController extends Controller
         $moonshineCount = Order::where('student_id', '=', $student_id)
             ->sum('moonshine_Quantity');
 
-        //calculate the total price
-        $totalprice = $alcoholDrinks * 10 + $softDrinkCount * $softdrink->cost + $moonshineCount * $moonshine->cost;
+        //calculate the total debt
+        $totalprice = ($alcoholDrinks * 10 + $softDrinkCount * $softdrink->cost + $moonshineCount * $moonshine->cost)-$totalPayments;
 
         return view('studentHistory', [
             'orders' => $orders,
