@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('beer_quantity');
             $table->integer('wine_quantity');
             $table->integer('softdrink_quantity');
-            $table->integer('moonshine_Quantity');
+            $table->integer('moonshine_quantity');
             $table->timestamp('date');
             $table->timestamps();
 

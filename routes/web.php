@@ -14,9 +14,20 @@
 Route::get('/', function () {
     return view('welcome');
 });
+<<<<<<< HEAD
 
+=======
+//search option for student
+Route::get('/students', 'StudentController@index');
+/*
+//list search
+Route::get('/student/list', 'StudentController@list');
+//show student
+Route::get('/student/list/{id}', 'StudentController@show');
+*/
+>>>>>>> master
 
-Route::get('/show_drinks', 'DrinkController@index');
+Route::get('/drinks', 'DrinkController@index');
 
 Route::get('/order', function () {
     return view('order');
