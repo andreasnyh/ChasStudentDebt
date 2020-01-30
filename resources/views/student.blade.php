@@ -10,20 +10,12 @@
             <form id="orderForm">
                 <select name="studentClass" id="studentClass" type="text" required>
                     <option value="" disabled selected hidden>-- Välj Klass --</option>
-                   @foreach ($edu as $program)
-                    <option value="{{ $program->name }}">{{ $program->name }}</option> 
+                    @foreach ($edu as $program)
+                        <option value="{{ $program->name }}">{{ $program->name }}</option> 
                    @endforeach
-
-
-)
-
-
-
                 </select>
                 <select name="studentName" id="studentName" type="text" required disabled>
-
                     <option value="" disabled selected hidden>-- Välj Student --</option>
-
                     {{--                        @if(  === 'FWD19')--}}
                     <option value="studentId">Student 1 FWD19</option>
                     <option value="studentId">Student 2 FWD19</option>
@@ -38,16 +30,10 @@
                         <option value="studentId">Student 3</option>--}}
                     {{--                        @endif--}}
                 </select>
-
             </form>
             <form action="/">
                 <button type="submit">Tillbaka till Meny</button>
             </form>
-
-
-
-
-
         </div>
     </div>
 @endsection
