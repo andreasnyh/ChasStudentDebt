@@ -7,6 +7,7 @@ use App\History;
 use App\Order;
 use App\Drink;
 use App\Student;
+use DateTime;
 
 class HistoryController extends Controller
 {
@@ -31,24 +32,25 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedAttributes = \request()->validate([
-            'student_ID' => 'required',
-            'order_ID' => 'required',
-            'deposit' => 'required'
+        
+        $history = new History();
+
+        //Get current timestamp and formats to mySQL format
+       
+        $history->student_id = $request->student_id;
+        $history->deposit = $request->deposit;
+     
+        $history->save();
+       
+
+        $time = new DateTime('now');
+        $time->format('Y-m-d H-i-s');
+        
+        return view('paymentMade', [
+            'student_id' => $history->student_id,
+            'deposit' => $history->deposit,
+            'time' => $time
         ]);
-
-        $date = new \DateTime('now');
-        $date->format('yy-mm-dd hh-MM-ss');
-
-
-
-        $attributes = \array_push($validatedAttributes, $date);
-
-        dd($attributes);
-
-        History::create($attributes);
-
-        return view('paymentMade', $attributes);
     }
 
     /**
@@ -93,7 +95,8 @@ class HistoryController extends Controller
         return view('studentHistory', [
             'orders' => $orders,
             'payments' => $payments,
-            'totalPrice' => $totalprice
+            'totalPrice' => $totalprice,
+            'student_id' => $student_id
         ]);
     }
 }
