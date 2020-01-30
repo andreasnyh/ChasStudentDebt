@@ -26,10 +26,11 @@ class StudentController extends Controller
         ]);
     }
 
-    public function indexClass()
+    public function indexClass($class)
     {
-        $filter = $_POST['studentClass'];
-        $student = Student::where('class', 'LIKE %' . $filter . '%')->get();
+        var_dump($_GET['studentClass']);
+        $class = $_GET['studentClass'];
+        $student = Student::where('class', 'LIKE %' . $class . '%')->get();
 
         return view('student', [
             'student' => $student

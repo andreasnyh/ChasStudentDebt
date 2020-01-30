@@ -9,7 +9,7 @@
             <label>Filtrera</label>
 
             //search for students with class filter
-            <form method="post" action="/student/{education}">
+            <form method="get" action="/student/{education}">
                 <select name="studentClass" id="studentClass" type="text">
                     <option value="" disabled selected hidden>-- Välj Klass --</option>
                        @foreach ($edu as $program)
@@ -46,7 +46,11 @@
                 @endforeach
                 </tbody>
             </table>
-
+            <form method="get" action="GET/student/{name}">
+                <label for ="student_search">Sök:</label>
+                <input type="text" class="search" id="student_search">
+                <button type="submit">Sök student</button>
+            </form>
 
 
 
