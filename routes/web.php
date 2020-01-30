@@ -14,9 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
-
-=======
 //search option for student
 Route::get('/students', 'StudentController@index');
 /*
@@ -25,7 +22,6 @@ Route::get('/student/list', 'StudentController@list');
 //show student
 Route::get('/student/list/{id}', 'StudentController@show');
 */
->>>>>>> master
 
 Route::get('/drinks', 'DrinkController@index');
 
