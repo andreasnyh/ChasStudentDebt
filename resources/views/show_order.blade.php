@@ -10,15 +10,15 @@
 
 
             <table border="1px">
-                <thead>{{ $student->name }}'s Order</thead>
-
+                <thead>
+                <th colspan="100%">{{ $student->name }}'s Order</th>
                 <tr>
-                    <td>Dryck</td>
-                    <td>Antal</td>
-                    <td>Pris</td>
-                    <td>Date</td>
-                    <td>Total</td>
-                </tr>
+                    <th>Dryck</th>
+                    <th>Antal</th>
+                    <th>Pris</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr></thead>
                 <tr>
                     <td>{{ $beerInfo->name }}</td>
                     <td>{{ $order->beer_quantity }}</td>
