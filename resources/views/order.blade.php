@@ -35,8 +35,9 @@
                         <option value="studentId">Student 3</option>--}}
                     {{--                        @endif--}}
                 </select>
-                <table border="1px"><br>
-                    <thead>Välj dryck</thead>
+                <table border="1px">
+                    Välj dryck
+                    <thead></thead>
                     <tr>
                         <td>Dryck</td>
                         <td>Pris</td>
