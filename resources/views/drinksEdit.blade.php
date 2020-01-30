@@ -1,1 +1,2 @@
-<h2>Edit drinks</h2>
+<h2>Redigera drycker</h2>
+<a href="/drinks"><button>Tillbaka till Drycker</button></a>

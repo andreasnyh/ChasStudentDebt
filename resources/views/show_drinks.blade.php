@@ -1,5 +1,6 @@
 @extends('layout')
     @section('content')
+    <div class="content">
     <table>
         <thead>
             <tr>
@@ -16,15 +17,19 @@
                     <td>{{$drink->cost}}:-</td>
                 </tr> 
             @endforeach
-           
         </tbody>
         
-       
     </table>
-    <form method="get" action="/">
+    <form method="get" action="/drinksAdd">
         <input type="submit" value="Lägg Till"> 
     </form>
-    <form method="get" action="/">
+    <form method="get" action="/drinksEdit">
     <input type="submit" value="Redigera">
     </form>
+    <form method="get" action="/drinksRemove">
+    <input type="submit" value="Ta bort">
+    </form>
+    <a href="/"><button>Tillbaka till Meny</button></a>
+    </div>
+    
     @endsection

@@ -1,1 +1,2 @@
-<h2>Remove drink</h2>
+<h2>Ta bort dryck</h2>
+<a href="/drinks"><button>Tillbaka till Drycker</button></a>
