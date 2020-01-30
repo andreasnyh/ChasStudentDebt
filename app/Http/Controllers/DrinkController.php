@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Drink;
+use DB;
 
 class DrinkController extends Controller
 {
@@ -29,7 +30,12 @@ class DrinkController extends Controller
         return view('drinksAdd');
     }
 
-    public function addDrinkMade() {
+    public function addDrinkMade(Request $req) {
+        $drink = new Drink;
+        $drink->name = $req->name;
+        $drink->stock = $req->stock;
+        $drink->cost = $req->cost;
+        $drink->save();
         return view('drinksAddMade');
     }
 
