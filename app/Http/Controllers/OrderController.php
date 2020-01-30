@@ -52,29 +52,18 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
         $data = new Order;
-//        $studentName = $request->input('studentName');
-//        dd($data::all());
+
         $data->student_ID = $request->input('student_ID');
         $data->beer_quantity = $request->input('beer_quantity');
         $data->wine_quantity = $request->input('wine_quantity');
         $data->softdrink_quantity = $request->input('softdrink_quantity');
         $data->moonshine_quantity = $request->input('moonshine_quantity') ?? 0;
 
-//        if ($data->beer_quantity){
-//            $data->drink_ID = 1;
-//        }
-//        $data->wine_quantity = $request->input('wineQuantity');
-//        $data->soda_quantity = $request->input('sodaQuantity');
-//        dd([$studentName, $studentClass, $beers, $wines, $sodas]);
-//       dd($data);
         if ($data->save()) {
 
             return redirect('/order/'.$data->id);
-//            return view('show_order', ['order' => $data->id]);
         };
-
     }
 
     /**
@@ -87,26 +76,29 @@ class OrderController extends Controller
     {
         $order = DB::table('orders')->where('id', $orderID)->first();
         if (! $order){abort(404);}
+
+        // Get student information
         $student = DB::table('students')->where('id', $order->student_id)->first();
-//dd($order);
 
-
+        // Get data of all items
         $beerInfo = DB::table('drinks')->where('name', 'Öl')->first();
         $wineInfo = DB::table('drinks')->where('name', 'Vin')->first();
         $softdrinkInfo = DB::table('drinks')->where('name', 'Läsk')->first();
         $moonshineInfo = DB::table('drinks')->where('name', 'Moonshine')->first();
 
+        // How many of each item was orderd
         $beer_quantity = DB::table('orders')->select('beer_quantity')->where('id', $orderID)->first();
         $wine_quantity = DB::table('orders')->select('wine_quantity')->where('id', $orderID)->first();
         $softdrink_quantity = DB::table('orders')->select('softdrink_quantity')->where('id', $orderID)->first();
         $moonshine_quantity = DB::table('orders')->select('moonshine_quantity')->where('id', $orderID)->first();
-//        dd($beer_quantity);
 
+        // Calculate cost of each item in order
         $beerTotal = $beer_quantity->beer_quantity * $beerInfo->cost;
         $wineTotal = $wine_quantity->wine_quantity * $wineInfo->cost;
         $softdrinkTotal = $softdrink_quantity->softdrink_quantity * $softdrinkInfo->cost;
         $moonshineTotal = $moonshine_quantity->moonshine_quantity * $moonshineInfo->cost;
 
+        // Price of all items in order
         $sum = $beerTotal + $wineTotal + $softdrinkTotal + $moonshineTotal;
 
         $params = [
@@ -122,7 +114,6 @@ class OrderController extends Controller
             'moonshine_quantity' => $moonshine_quantity,
             'sum' => $sum // Access this in blade with just $sum
         ];
-//        dd($params);
         return view('show_order', $params);
     }
 
