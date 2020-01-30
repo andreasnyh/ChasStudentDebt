@@ -10,8 +10,11 @@ let studentsALL = document.querySelectorAll(".studentsALL");
 if (studentClassSelect) {
     studentClassSelect.onchange = function () {
 
-        student.removeAttribute("disabled");
-        student.selectedIndex = 0;
+
+        if(student) {
+            student.removeAttribute("disabled");
+            student.selectedIndex = 0;
+        }
 
         if (studentClassSelect.value == "students_ALL") {
             for (let i = 0; i < studentsALL.length; i++) {
