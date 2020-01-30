@@ -11,10 +11,11 @@
 </head>
 
 <body>
-    <nav class=" text-light bg-dark mb-5">
+    <nav class=" text-light bg-dark">
         <img class="pl-4 py-4" src="https://chas.se/wp-content/uploads/2017/03/ChasLogoSvgWht.svg" width="200"
             alt="Chas Visual Management">
-        <img class="ml-2 mt-3" src="/images/bar_tap_logo.png" width="50" alt="tab-key">
+        <img id="logo1"src="/images/bar_tab_logo1.png" width="150" alt="">
+        <img class="ml-2 mt-3" src="/images/bar_tab_logo.png" width="35" alt="tab-key">
     </nav>
     <div class="container">
         @yield('content')

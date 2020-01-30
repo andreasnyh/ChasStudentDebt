@@ -70,26 +70,10 @@
     @extends('layout')
     @section('content')
         
-    
-    <div class="flex-center position-ref full-height">
-        @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-            <a href="{{ url('/home') }}">Home</a>
-            @else
-            <a href="{{ route('login') }}">Login</a>
-
-            @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
-            @endif
-            @endauth
-        </div>
-        @endif
-
-        <div class="content">
-            <div class="title m-b-md">
-                Chas Liqour Store
-            </div>
+    <div class="content text-center d-flex flex-column align-items-center flex-d-col justify-content-center">
+            
+                <h1 class="header-1 main-heading">Chas Bar Tab</h1>
+            
             <div class="links">
                 <a href="/students">Lista Studenter</a>
                 <a href="/order">Ny beställning</a>
@@ -98,7 +82,6 @@
                 <a href="https://github.com/andreasnyh/ChasStudentDebt/">GitHub</a>
             </div>
         </div>
-    </div>
     @endsection
 
 

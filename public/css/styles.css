@@ -13,7 +13,14 @@ input[type=number] {
 /* END - Hides up and down arrows on input[type=number] */
 
 
-html, body {
-   min-height: 100vh;
+#logo1 {
+    position: relative;
+    top:8px;
+}
+html, body, .container .content {
+   min-height: 70vh;
 }
 
+.main-heading {
+    font-size: 150px;
+}
