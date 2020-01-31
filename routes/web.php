@@ -14,8 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//search option for student
+//filter/search option for student
 Route::get('/students', 'StudentController@index');
+
+// search for student by string
+Route::post('/students/search/', 'StudentController@search');
+
+//list students for selected class
+//Route::get('/students/{education}', 'StudentController@indexClass($education)');
+
+//add new student
+Route::get('/students/add', 'StudentController@create');
 /*
 //list search
 Route::get('/student/list', 'StudentController@list');
