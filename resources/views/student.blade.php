@@ -30,7 +30,7 @@
                         <td>{{$user->class}}</td>
                     </tr>
                 @endforeach
-                
+
                 @foreach ($studentsFWD19 as $user)
                     <tr  class="FWD19" style="display: none">
                         <td >{{$user->name}}</td>
@@ -38,7 +38,7 @@
                         <td>{{$user->class}}</td>
                     </tr>
                 @endforeach
-               
+
                 @foreach ($studentsFWD20 as $user)
                     <tr  class="FWD20" style="display: none">
                         <td >{{$user->name}}</td>
@@ -46,9 +46,25 @@
                         <td>{{$user->class}}</td>
                     </tr>
                 @endforeach
+
+                @foreach ($studentsIK19 as $user)
+                    <tr  class="IK19" style="display: none">
+                        <td >{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->class}}</td>
+                    </tr>
+                @endforeach
+
+                @foreach ($studentsIK20 as $user)
+                    <tr  class="IK20" style="display: none">
+                        <td >{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->class}}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
-            @elseif (!empty($search)) 
+            @elseif (!empty($search))
                 <p>No results found for {{$search}}</p>
             @endif
             <form method="post" action="{{url('students/search')}}">
