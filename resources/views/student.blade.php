@@ -15,7 +15,7 @@
                         <option value="{{ $ed->name }}">{{$ed->name}}</option>
                     @endforeach
             </select>
-            @if (count($students) > 1)
+            @if (count($students) >= 1)
             <table border="1px" >
                 <thead>
                 <tr>
@@ -50,7 +50,7 @@
                 @endforeach
                 </tbody>
             </table>
-            @else
+            @elseif (!empty($search)) 
                 <p>No results found for {{$search}}</p>
             @endif
             <form method="post" action="{{url('students/search')}}">
