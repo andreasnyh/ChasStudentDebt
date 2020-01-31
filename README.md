@@ -19,7 +19,8 @@
 - [Dylan Nore]("https://github.com/DylanNore")
 - [Karl Falk]("https://github.com/Voldakka")
 - [Project on Github]("https://github.com/andreasnyh/ChasStudentDebt")
-&copy; 2020 Chas Academy
+
+##### &copy; 2020 Chas Academy
 
 ## License of Laravel Framework
 
