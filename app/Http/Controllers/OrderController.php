@@ -29,17 +29,14 @@ class OrderController extends Controller
      */
     public function create() {
 
+        // Get all the different programmes students can attend from the database
         $eds = DB::table('educational_programes')->get();
+
+        // Get all students from each study programme
         $studentsFWD19 = DB::table('students')->where('class', 'FWD19')->get();
         $studentsFWD20 = DB::table('students')->where('class', 'FWD20')->get();
         $studentsIK19 = DB::table('students')->where('class', 'IK19')->get();
         $studentsIK20 = DB::table('students')->where('class', 'IK20')->get();
-
-        /*foreach ($eds as $ed){
-            ${'students' . $ed->name} = $ed->name;
-
-        }*/
-        //dd($studentsFWD19);
 
         $params = [
             'eds' => $eds,
@@ -49,6 +46,7 @@ class OrderController extends Controller
             'studentsIK20' => $studentsIK20
         ];
 
+        // Send programmes and students to the view
         return view('order', $params);
     }
 
@@ -58,18 +56,21 @@ class OrderController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+
         $data = new Order;
 
+        // Capture inputs from the order view
         $data->student_ID = $request->input('student_ID');
         $data->beer_quantity = $request->input('beer_quantity');
         $data->wine_quantity = $request->input('wine_quantity');
         $data->softdrink_quantity = $request->input('softdrink_quantity');
         $data->moonshine_quantity = $request->input('moonshine_quantity') ?? 0;
 
+        // If it's possible to save this new order to the database
         if ($data->save()) {
-
+            // Sent the user to '/order/{orderID}'
+            // The orderID gets set upon saving the order to the database, hence the if-case
             return redirect('/order/' . $data->id);
         };
     }
