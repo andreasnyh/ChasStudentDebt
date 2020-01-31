@@ -44,7 +44,7 @@ Route::get('/drinksRemoveMade/{name}', 'DrinkController@removeDrinkMade');
 // New order form
 Route::get('/order', 'OrderController@create');
 
-// Create a new order
+// Create a new order and store it in the database
 Route::get('/order/new', 'OrderController@store');
 
 // Info about a specific order
