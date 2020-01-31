@@ -1,11 +1,6 @@
-<nav class=" text-light bg-dark">
-        <img class="pl-4 py-4" src="https://chas.se/wp-content/uploads/2017/03/ChasLogoSvgWht.svg" width="200"
-            alt="Chas Visual Management">
-        <img id="logo1"src="./public/images/bar_tab_logo1.png" width="150" alt="">
-        <img class="ml-2 mt-3" src="./public/images/bar_tab_logo.png" width="35" alt="tab-key">
-    </nav>
+# CHAS BarTab
 
-# About Chas Bartab
+## About Chas BarTab
 
 ## Routing
 
@@ -29,9 +24,3 @@
 ## License of Laravel Framework
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-<style>
-body{
-    background-color: #343a40!important;
-}
-</style>
