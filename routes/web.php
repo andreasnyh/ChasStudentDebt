@@ -14,10 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//search option for student
-Route::get('/student', function(){
-    return view('students');
-});
+//filter/search option for student
+Route::get('/students', 'StudentController@index');
+
+// search for student by string
+Route::post('/students/search/', 'StudentController@search');
+
+//list students for selected class
+//Route::get('/students/{education}', 'StudentController@indexClass($education)');
+
+//add new student
+Route::get('/students/add', 'StudentController@create');
 /*
 //list search
 Route::get('/student/list', 'StudentController@list');
@@ -34,15 +41,23 @@ Route::get('/drinksAddMade', 'DrinkController@addDrinkMade');
 Route::get('/drinksRemove', 'DrinkController@removeDrink');
 Route::get('/drinksRemoveMade/{name}', 'DrinkController@removeDrinkMade');
 
-Route::get('/order', function () {
-    return view('order');
-});
+// New order form
+Route::get('/order', 'OrderController@create');
 
+// Create a new order
+Route::get('/order/new', 'OrderController@store');
+
+// Info about a specific order
 Route::get('/order/{orderID}', 'OrderController@show');
+
+// Shown after an order has been made
+Route::get('/order/made/{orderID}', 'OrderController@orderMade');
 
 Route::get('/history', 'HistoryController@index');
 
-Route::get('/history/{id}', 'HistoryController@show');
+Route::post('/history', 'HistoryController@store');
+
+Route::get('/history/{student_id}', 'HistoryController@show');
 
 
 

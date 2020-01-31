@@ -2,22 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Class;
-use App\studentclass;
+use App\Educational_programes;
 use Illuminate\Http\Request;
+use App\Student;
+use Illuminate\Support\Facades\DB;
+
 
 class StudentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
-     *
+     * StudentController
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $student = studentclass::all();
+        $students = DB::table('students')->get();
+        $eds = DB::table('educational_programes')->get();
+        $studentsFWD19 = DB::table('students')->where('class', 'FWD19')->get();
+        $studentsFWD20 = DB::table('students')->where('class', 'FWD20')->get();
+        $studentsIK19 = DB::table('students')->where('class', 'IK19')->get();
+        $studentsIK20 = DB::table('students')->where('class', 'IK20')->get();
 
+        $params = [
+            'students'=> $students,
+            'eds' => $eds,
+            'studentsFWD19' => $studentsFWD19,
+            'studentsFWD20' => $studentsFWD20,
+            'studentsIK19' => $studentsIK19,
+            'studentsIK20' => $studentsIK20
+        ];
 
+        return view('student', $params);
+    }
+
+    public function indexClass($class)
+    {
+        var_dump($_GET['studentClass']);
+        $class = $_GET['studentClass'];
+        $student = Student::where('class', 'LIKE %' . $class . '%')->get();
+
+        return view('student', [
+            'student' => $student
+        ]);
     }
 
     /**
@@ -47,11 +75,19 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search(Request $request)
     {
-        $student = students::where('studentID', $id)->get();
-        return view('showStudent', [
-            'student' => $student
+       
+        $student = Student::where('name', 'LIKE', '%'. $request->name.'%')->get();
+        return view('student', [
+            'students'=> $student,
+            'search' => $request->name,
+            'eds' => [] ,
+            'studentsFWD19' => [],
+            'studentsFWD20' => [],
+            'studentsIK19' => [],
+            'studentsIK20' => []
+
         ]);
     }
 
