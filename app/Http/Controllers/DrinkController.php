@@ -38,8 +38,11 @@ class DrinkController extends Controller
         $drink->name = $req->name;
         $drink->stock = $req->stock;
         $drink->cost = $req->cost;
-        $drink->save();
-        
+        //$drink->edit();
+        //DB::table('drinks')->where('name', $drink->name)->update();
+        //DB::update('update drinks set name = $name, stock = $stock, cost = $cost where name = ?', [$drink->name]);
+        //DB::update('update drinks set name = ?, stock = ?, cost = ? where name = ?',[$drink->name, $drink->id, $drink->cost, $drink->name ]);
+        echo $drink->name;
         return view('drinksEditMade');
     }
 

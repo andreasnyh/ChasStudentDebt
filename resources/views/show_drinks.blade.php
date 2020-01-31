@@ -46,7 +46,10 @@
         <button class="btn btn-warning text-white"type="submit">Redigera</button>
     </form>
     <form action="/drinksRemove">
-        <button class="btn btn-lg bg-dark text-light mt-2" type="submit">Tillbaka till Meny</button>
+        <button class="btn btn-lg bg-dark text-light mt-2" type="submit">Ta bort</button>
+    </form>
+    <form action="/">
+        <button class="btn btn-lg bg-dark text-light mt-2" type="submit">Huvudmeny</button>
     </form>
 </div>
 
