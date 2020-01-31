@@ -75,11 +75,19 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search(Request $request)
     {
-        $student = Student::where('studentID', $id)->get();
-        return view('showStudent', [
-            'student' => $student
+       
+        $student = Student::where('name', 'LIKE', '%'. $request->name.'%')->get();
+        return view('student', [
+            'students'=> $student,
+            'search' => $request->name,
+            'eds' => [] ,
+            'studentsFWD19' => [],
+            'studentsFWD20' => [],
+            'studentsIK19' => [],
+            'studentsIK20' => []
+
         ]);
     }
 

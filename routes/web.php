@@ -16,10 +16,13 @@ Route::get('/', function () {
 });
 //filter/search option for student
 Route::get('/students', 'StudentController@index');
-//list students for selected class
-Route::get('/students/{education}', 'StudentController@indexClass($education)');
+
 // search for student by string
-Route::get('/students/{name}', 'StudentController@show');
+Route::post('/students/search/', 'StudentController@search');
+
+//list students for selected class
+//Route::get('/students/{education}', 'StudentController@indexClass($education)');
+
 //add new student
 Route::get('/students/add', 'StudentController@create');
 /*
