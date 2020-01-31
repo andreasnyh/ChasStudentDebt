@@ -7,7 +7,7 @@
     </div>
 
     <form id="orderForm" action="/order/new" method="GET">
-        <select class="custom-select custom-select-sm mt-3 mr-2">name="studentClass" id="studentClass" type="text"
+        <select class="custom-select custom-select-sm mt-3 mr-2" name="studentClass" id="studentClass" type="text"
             required>
             <option value="" disabled selected hidden>-- Välj Klass --</option>
 
