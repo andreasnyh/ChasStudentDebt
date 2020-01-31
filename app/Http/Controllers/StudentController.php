@@ -56,7 +56,7 @@ class StudentController extends Controller
     public function create()
     {
         $eds = \DB::table("educational_programes")->get();
-            return view('addStudent', [
+            return view('studentAdd', [
                 'eds' => $eds
             ]);
     }
@@ -69,12 +69,12 @@ class StudentController extends Controller
      */
     public function store(Request $req)
     {
-        $student = new StudentAdd;
+        $student = new Student;
         $student->class = $req->class;
         $student->name = $req->name;
         $student->email = $req->email;
         $student->save();
-        return view('/studentNew');
+        return view('/studentAddMade');
         
     }
 

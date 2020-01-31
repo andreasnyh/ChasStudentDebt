@@ -1,21 +1,22 @@
-@extends('layout')
+@extends ('layout')
 
-@section('content')
+@section ('content')
+<div class="flex-center position-ref full-height">
+            @if (Route::has('login'))
+                <div class="top-right links">
+                    @auth
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ route('login') }}">Login</a>
 
-<h2>Lägg till dryck</h2>
-
-
-<form method="GET" action="/drinksAddMade">
-    @csrf
-    <p>Namn</p>
-    <input type="text" name="name">
-    <p>Antal</p>
-    <input type="text" name="stock">
-    <p>Pris</p>
-    <input type="text" name="cost">
-    <input type="submit" name="submit" value="Lägg Till"> 
-    </form>
-
-<a href="/"><button>Tillbaka till startmeny</button></a>
-
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+            <h1>Ny student tillagd!</h1>
+            <form action="/">
+                    <button type="submit">Tillbaka till meny</button>
+            </form>
 @endsection
