@@ -1,23 +1,21 @@
 @extends('layout')
-
 @section('content')
-    <div class="flex-center position-ref full-height">
         <div class="content">
             <div class="title m-b-md">
-                <h1>Hittar du inte dig själv? Sök här</h1>
+                <h1 class="mt-5">Hittar du inte dig själv? Sök här</h1>
             </div>
             <label>Filtrera</label>
 
-            //search for students with class filter
-            <select name="studentClass" id="studentClass" type="text" required>
+            {{-- //search for students with class filter --}}
+            <select class="custom-select custom-select-md mt-4 mr-2" name="studentClass" id="studentClass" type="text" required>
                 <option value="students_ALL" >-- Alla Klasser --</option>
                     @foreach($eds as $ed)
                         <option value="{{ $ed->name }}">{{$ed->name}}</option>
                     @endforeach
             </select>
             @if (count($students) >= 1)
-            <table border="1px" >
-                <thead>
+            <table class="table table-striped mt-5" border="1px" >
+                <thead class="bg-dark text-light">
                 <tr>
                     <th>Namn</th>
                     <th>Email</th>
@@ -61,11 +59,10 @@
             </form>
 
             <form action="/student/add">
-                <button type="submit">Lägg till student</button>
+                <button class="btn btn-outline-success mr-3" type="submit">Lägg till student</button>
             </form>
             <form action="/">
-                <button type="submit">Tillbaka till Meny</button>
+                <button class="btn btn-lg bg-dark text-light mt-4" type="submit">Tillbaka till Meny</button>
             </form>
         </div>
-    </div>
 @endsection
