@@ -8,7 +8,6 @@ use DB;
 
 class DrinkController extends Controller
 {
-    
     public function index() {
         $drinks =  Drink::get();
         
@@ -18,10 +17,29 @@ class DrinkController extends Controller
     }
 
     public function editDrink() {
-        return view('drinksEdit');
+        $drinks =  Drink::get();
+        
+        return view('drinksEdit', [
+            'drinks' => $drinks
+        ]);
     }
 
-    public function editDrinkMade() {
+    public function editDrinkDrink($name) {
+        $drinks = DB::table('drinks')->where('name', $name)->first();
+        
+        return view('drinksEditDrink', [
+            'drinks' => $drinks
+        ]);
+    }
+
+    public function editDrinkMade(Request $req) {
+        
+        $drink = Drink::get();
+        $drink->name = $req->name;
+        $drink->stock = $req->stock;
+        $drink->cost = $req->cost;
+        $drink->save();
+        
         return view('drinksEditMade');
     }
 
@@ -50,5 +68,4 @@ class DrinkController extends Controller
         DB::table('drinks')->where('name', $name)->delete();
         return view('drinksRemoveMade');
     }
-
 }

@@ -4,7 +4,7 @@
 
 <h2>Ta bort dryck</h2>
 
-<table>
+<table border='1'>
         <thead>
             <tr>
                 <th><h3>Namn</h3></th>

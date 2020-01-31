@@ -1,7 +1,7 @@
 @extends('layout')
     @section('content')
     <div class="content">
-    <table>
+    <table border='1'>
         <thead>
             <tr>
                 <th><h3>Namn</h3></th>
@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{$drink->name}}</td>
                     <td>{{$drink->stock}}</td>
-                    <td>{{$drink->cost}}:-</td>
+                    <td>{{$drink->cost}}</td>
                 </tr> 
             @endforeach
         </tbody>
