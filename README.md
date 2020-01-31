@@ -12,13 +12,13 @@
 
 ## Contributors
 
-- [Simon Nordström]("https://github.com/SimonNord")
-- [Andréas Ny]("https://github.com/andreasnyh")
-- [Hung Ta]("https://github.com/ByHT")
-- [Erik Axelsson]("https://github.com/erax83")
-- [Dylan Nore]("https://github.com/DylanNore")
-- [Karl Falk]("https://github.com/Voldakka")
-- [Project on Github]("https://github.com/andreasnyh/ChasStudentDebt")
+- [Simon Nordström](https://github.com/SimonNord)
+- [Andréas Ny](https://github.com/andreasnyh)
+- [Hung Ta](https://github.com/ByHT)
+- [Erik Axelsson](https://github.com/erax83)
+- [Dylan Nore](https://github.com/DylanNore)
+- [Karl Falk](https://github.com/Voldakka)
+- [Project on Github](https://github.com/andreasnyh/ChasStudentDebt)
 
 ##### &copy; 2020 Chas Academy
 
