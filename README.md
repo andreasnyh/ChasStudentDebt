@@ -31,7 +31,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 <style>
 
-.markdown-body img{
-    background: #343a40;
+img{
+    background-color: #343a40!important;
 }
 </style>
