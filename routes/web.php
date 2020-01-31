@@ -59,5 +59,7 @@ Route::post('/history', 'HistoryController@store');
 
 Route::get('/history/{student_id}', 'HistoryController@show');
 
+Route::get('/student/add', 'StudentController@create');
+Route::get('/submit', 'StudentController@store');
 
 
