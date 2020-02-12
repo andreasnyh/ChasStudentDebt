@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Drinks;
+use App\Educational_programes;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Type;
 use Symfony\Component\Console\Input\Input;
+use App\Student;
 
 class OrderController extends Controller
 {
@@ -38,6 +40,10 @@ class OrderController extends Controller
         $studentsIK19 = DB::table('students')->where('class', 'IK19')->get();
         $studentsIK20 = DB::table('students')->where('class', 'IK20')->get();
 
+
+        /* foreach ($orders as $key => $value) {
+            # code...
+        } */
         $params = [
             'eds' => $eds,
             'studentsFWD19' => $studentsFWD19,
@@ -62,7 +68,7 @@ class OrderController extends Controller
 
         // Capture inputs from the order view
         $data->student_ID = $request->input('student_ID');
-        $data->beer_quantity = $request->input('beer_quantity');
+        $data->beer_quantity = $request->input('quantity');
         $data->wine_quantity = $request->input('wine_quantity');
         $data->softdrink_quantity = $request->input('softdrink_quantity');
         $data->moonshine_quantity = $request->input('moonshine_quantity') ?? 0;

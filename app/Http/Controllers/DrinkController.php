@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Drink;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class DrinkController extends Controller
 {

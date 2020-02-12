@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class fill_orders_table extends Seeder
 {
@@ -12,99 +13,61 @@ class fill_orders_table extends Seeder
     public function run()
     {
         DB::table('orders')->insert([
-
             'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'orderNumber' => random_int(1,10),
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
         DB::table('orders')->insert([
-
             'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'orderNumber' => random_int(1,10),
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
         DB::table('orders')->insert([
-
             'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'orderNumber' => random_int(1,10),
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
         DB::table('orders')->insert([
-
             'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'orderNumber' => random_int(1,10),
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
         DB::table('orders')->insert([
-
             'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'orderNumber' => random_int(1,10),
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
         DB::table('orders')->insert([
-
-            'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'student_id' => 1,
+            'orderNumber' => 1,
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
         DB::table('orders')->insert([
-
-            'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'student_id' => 1,
+            'orderNumber' => 1,
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
         DB::table('orders')->insert([
-
-            'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
+            'student_id' => 1,
+            'orderNumber' => 1,
+            'drink_id' => random_int(1,4),
+            'quantity' => random_int(1,10),
+            'amount' => random_int(10,200)
         ]);
-
-        DB::table('orders')->insert([
-
-            'student_id' => random_int(1,4),
-            'beer_quantity' => random_int(1,4),
-            'wine_quantity' => random_int(1,4),
-            'softdrink_quantity' => random_int(1,4),
-            'moonShine_quantity' => random_int(1,4),
-            'date' => '2019-03-02 00:00:00'
-        ]);
-
-
-
-
-
     }
 }
 
