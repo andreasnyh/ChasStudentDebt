@@ -2,13 +2,13 @@
 @section('content')
     <div class="content">
         <table border="1px" class="table table-striped">
-        <h4 class="h2 pt-5">{{$name}}´s Historik</h4>
+        <h4 class="h2 pt-5">{{$student->name}}´s Historik</h4>
             <thead class="bg-dark text-light">
                 <tr>
                     <th>Order ID</th>
                     <th>Datum</th>
-                    @foreach ($drink_prices as $drink)
-                      <th>{{$drink->name}}</th>  
+                    @foreach ($drinks as $drink)
+                      <th>{{$drink->name}}</th>
                     @endforeach
                     <th>Pris</th>
                 </tr>
@@ -33,10 +33,10 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($payments as $payment)
+                @foreach ($invoices as $invoice)
                     <tr>
-                        <td colspan="4">{{$payment->date}}</td>
-                        <td colspan="3">{{$payment->deposit}} kr</td>
+                        <td colspan="4">{{$invoice->created_at}}</td>
+                        <td colspan="3">{{$invoice->amount}} kr</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -50,7 +50,7 @@
         <form method="POST" action="/history">
                 @csrf
                 <div class="input-group input-group-lg mb-3">
-                    <input hidden class="form-control" type="text" name="student_id" id="student_id" value="{{$student_id}}">
+                    <input hidden class="form-control" type="text" name="student_id" id="student_id" value="{{$student->id}}">
                     <input type="text" class="form-control" id="deposit" name="deposit" placeholder="Amount to pay" placeholder="ex 10kr" min="0" max="{{-- {{$totalPrice}} --}}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-success" type="submit">Pay</button>
