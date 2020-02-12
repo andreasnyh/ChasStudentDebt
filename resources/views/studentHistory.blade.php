@@ -7,10 +7,9 @@
                 <tr>
                     <th>Order ID</th>
                     <th>Datum</th>
-                    <th>Öl</th>
-                    <th>Vin</th>
-                    <th>Moonshine</th>
-                    <th>Läsk</th>
+                    @foreach ($drink_prices as $drink)
+                      <th>{{$drink->name}}</th>  
+                    @endforeach
                     <th>Pris</th>
                 </tr>
             </thead>
@@ -23,7 +22,7 @@
                     <td>{{$order->wine_quantity}}</td>
                     <td>{{$order->moonshine_quantity}}</td>
                     <td>{{$order->softdrink_quantity}}</td>
-                    <td>{{$order->price}} kr</td>
+                    <td>{{$order->beer_quantity + $order->wine_quantity + $order->moonshine_quantity + $order->softdrink_quantity}} kr</td>
                 </tr>
             @endforeach
             </tbody>
@@ -44,7 +43,7 @@
             <tfoot>
                 <tr>
                     <th colspan="4">Total skuld</th>
-                    <td colspan="3">{{$totalPrice}} kr</td>
+                    <td colspan="3">{{-- {{$totalPrice}} --}} kr</td>
                 </tr>
             </tfoot>
         </table>
@@ -52,7 +51,7 @@
                 @csrf
                 <div class="input-group input-group-lg mb-3">
                     <input hidden class="form-control" type="text" name="student_id" id="student_id" value="{{$student_id}}">
-                    <input type="text" class="form-control" id="deposit" name="deposit" placeholder="Amount to pay" placeholder="ex 10kr" min="0" max="{{$totalPrice}}">
+                    <input type="text" class="form-control" id="deposit" name="deposit" placeholder="Amount to pay" placeholder="ex 10kr" min="0" max="{{-- {{$totalPrice}} --}}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-success" type="submit">Pay</button>
                     </div>

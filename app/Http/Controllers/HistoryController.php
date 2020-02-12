@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\History;
 use App\Order;
 use App\Drink;
@@ -25,11 +26,14 @@ class HistoryController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
+    
+     /**
+     * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $name = Student::find($request->student_id)->name;
@@ -72,30 +76,42 @@ class HistoryController extends Controller
         }
 
         // fetching the price from Drinks table
-        $beer = Drink::select('cost')->where('name', 'Öl')->first();
+        $drink_prices = DB::table('drinks')
+            ->leftJoin('price', 'drink_id', '=', 'drinks.id')
+            ->get();
+       
+
+        foreach ($drink_prices as $drink) {
+            echo 'Drink: '. $drink->name .' ';
+            echo 'Price '. $drink->price.'<br>';
+        }
+
+     
+
+        /* $beer = Drink::select('cost')->where('name', 'Öl')->first();
         $wine = Drink::select('cost')->where('name', 'Vin')->first();
         $softdrink = Drink::select('cost')->where('name', 'Läsk')->first();
-        $moonshine = Drink::select('cost')->where('name', 'Moonshine')->first();
+        $moonshine = Drink::select('cost')->where('name', 'Moonshine')->first(); */
         
         $ordersPrice = 0;
 
         // For each order row. Adding to sum.
-        foreach ($orders as $order) {
+       /*  foreach ($orders as $order) {
             $sumBeer= $order->beer_quantity * $beer->cost;
             $sumWine = $order->wine_quantity * $wine->cost;
             $sumMoonshine = $order->moonshine_quantity * $moonshine->cost;
             $sumSoftdrink = $order->softdrink_quantity * $softdrink->cost;
             $order->price = $sumBeer + $sumWine + $sumMoonshine + $sumSoftdrink;
             $ordersPrice += $order->price;
-        }
+        } */
 
         //calculate the total debt
         $totalprice = $ordersPrice - $totalPayments;
-
+ 
         return view('studentHistory', [
             'orders' => $orders,
             'payments' => $payments,
-            'totalPrice' => $totalprice,
+            'drink_prices' => $drink_prices,
             'student_id' => $student_id,
             'name' => $name
         ]);
