@@ -5,45 +5,40 @@
         <h4 class="h2 pt-5">{{$student->name}}´s Historik</h4>
             <thead class="bg-dark text-light">
                 <tr>
-                    <th>Order ID</th>
+                    <th>Ordernummer</th>
                     <th>Datum</th>
-                    @foreach ($drinks as $drink)
-                      <th>{{$drink->name}}</th>
-                    @endforeach
                     <th>Pris</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orders as $order)
+
                 <tr>
-                    <td>{{$order->id}}</td>
-                    <td>{{$order->date}}</td>
-                    <td>{{$order->beer_quantity}}</td>
-                    <td>{{$order->wine_quantity}}</td>
-                    <td>{{$order->moonshine_quantity}}</td>
-                    <td>{{$order->softdrink_quantity}}</td>
-                    <td>{{$order->beer_quantity + $order->wine_quantity + $order->moonshine_quantity + $order->softdrink_quantity}} kr</td>
+                    <td>{{ $order->orderNumber }}</td>
+                    <td>{{ $order->created_at }}</td>
+                    <td>{{ $order->amount }} kr</td>
                 </tr>
+
             @endforeach
             </tbody>
             <thead class="bg-dark text-light">
                 <tr>
-                    <th colspan="4">Datum</th>
-                    <th colspan="3">Inbetalning</th>
+                    <th colspan="2">Datum</th>
+                    <th colspan="1">Inbetalning</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($invoices as $invoice)
                     <tr>
-                        <td colspan="4">{{$invoice->created_at}}</td>
-                        <td colspan="3">{{$invoice->amount}} kr</td>
+                        <td colspan="2">{{$invoice->created_at}}</td>
+                        <td colspan="1">{{$invoice->amount}} kr</td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="4">Total skuld</th>
-                    <td colspan="3">{{-- {{$totalPrice}} --}} kr</td>
+                    <th colspan="2">Total skuld</th>
+                    <td colspan="1">{{-- {{$totalPrice}} --}} kr</td>
                 </tr>
             </tfoot>
         </table>

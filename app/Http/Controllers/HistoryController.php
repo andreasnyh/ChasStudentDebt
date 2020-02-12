@@ -113,22 +113,25 @@ class HistoryController extends Controller
 
         $student = Student::where('id', $student_id)->first();
 
-        $orders = Order::where('student_id', $student_id)
-            ->orderBy('orderNumber', 'desc')
+        $allOrders = Order::where('student_id', $student_id)
+            ->orderBy('orderNumber', 'asc')
             ->get();
 
         $invoices = Invoice::where('student_id', $student_id)
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'asc')
             ->get();
 
         $drinks = Drink::all();
 
+//        for each order number push it to an array and sent to view
+        $orders=[];
 //dd($drinks);
         return view('studentHistory', [
             'student' => $student,
             'orders' => $orders,
             'invoices' => $invoices,
             'drinks' => $drinks
+//            'last_order_number' => Null
 //            'student_id' => $student_id,
 //            'name' => $name
         ]);
