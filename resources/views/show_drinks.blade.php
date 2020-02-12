@@ -24,21 +24,6 @@
         </tbody>
     </table>
 
-    <?php /*
-    <form method="get" action="/drinksAdd">
-        <input type="submit" value="Lägg Till"> 
-    </form>
-    <form method="get" action="/drinksEdit">
-    <input type="submit" value="Redigera">
-    </form>
-    <form method="get" action="/drinksRemove">
-    <input type="submit" value="Ta bort">
-    </form>
-    <a href="/"><button>Tillbaka till Meny</button></a>
-    </div>
-    */ ?>
-    
-
     <form method="get" action="/drinksAdd">
         <button class="btn btn-success mb-2"type="submit">Lägg Till</button>
     </form>
