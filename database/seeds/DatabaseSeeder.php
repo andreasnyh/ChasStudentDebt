@@ -14,8 +14,9 @@ class DatabaseSeeder extends Seeder
         $this->call(fill_students_table::class);
         $this->call(fill_drinks_table::class);
         $this->call(fill_orders_table::class);
-        $this->call(fill_history_table::class);
         $this->call(fill_class_table::class);
+        $this->call(fill_price_table::class);
+        $this->call(fill_invoice_table::class);
 
     }
 }

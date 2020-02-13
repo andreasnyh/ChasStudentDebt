@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
+use App\Student;
+use App\Drink;
+use App\Http\Resources\Student as StudentResource;
+use App\Http\Resources\Drink as DrinkResource;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +19,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+}); */
+
+
+Route::get('/students/{id}', function($id){
+    
+    return Student::find($id);
+});
+
+Route::get('/students', function(){
+
+    $students = Student::paginate(5);
+    return StudentResource::collection($students);
+});
+
+Route::get('drinks', function(){
+
+    $drinks = Drink::paginate(10);
+    return DrinkResource::collection($drinks);
+});
+
+Route::get('drinks/{id}', function($id){
+
 });

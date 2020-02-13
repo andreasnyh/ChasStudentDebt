@@ -55,7 +55,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $eds = \DB::table("educational_programes")->get();
+        $eds = DB::table("educational_programes")->get();
             return view('studentAdd', [
                 'eds' => $eds
             ]);
