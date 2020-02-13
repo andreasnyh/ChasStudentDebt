@@ -130,38 +130,53 @@ class HistoryController extends Controller
         global $last_order_number;
         $last_order_number = $first_order->orderNumber;
         $index = 1;
+        $order_total = 0;
+        $sum_orders = 0;
 //        Loop through all orders of a student
         foreach ($allOrders as $order) {
 
 //            If it has the same ordernumber push the order to $order_row
             if ($last_order_number === $order->orderNumber) {
                 $order_row[] = $order;
+                $order_total += $order->amount;
 
 //              If the amount of loops done equals length of all orders save current order to array
                 if (count($allOrders) == $index) {
+                    $order_row += ['order_total' => $order_total];
                     $orders[$last_order_number] = $order_row;
+                    $sum_orders += $order_total;
                 }
 
             } else { // When it's not the same push the array to orders
+                $order_row += ['order_total' => $order_total];
                 $orders[$last_order_number] = $order_row;
+                $sum_orders += $order_total;
+
+//                $orders[$last_order_number] =  [
+//                    'item' => $order_row,
+//                    'order_total' => $order_total];
                 $last_order_number = $order->orderNumber; // new last order number
                 $order_row = [];
+                $order_total = $order->amount;
                 $order_row[] = $order;
 
 //              If the amount of loops done equals length of all orders save current order to array
                 if (count($allOrders) == $index) {
+                    $order_row += ['order_total' => $order_total];
                     $orders[$last_order_number] = $order_row;
+                    $sum_orders += $order_total;
                 }
             }
             $index++;
         }
 //        dd($orders);
+
         return view('studentHistory', [
             'student' => $student,
             'orders' => $orders,
             'invoices' => $invoices,
-            'drinks' => $drinks
-//            'last_order_number' => Null
+            'drinks' => $drinks,
+            'sum_orders' => $sum_orders
 //            'student_id' => $student_id,
 //            'name' => $name
         ]);

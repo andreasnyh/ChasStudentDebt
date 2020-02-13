@@ -12,31 +12,50 @@
             </thead>
             <tbody>
             @foreach ($orders as $order)
+                @php
+                    $order_total = $order['order_total'];
+                @endphp
 
                 @foreach($order as $order_row)
-                    <tr>
-                        @if($loop->first)
-                            <td>{{ $order_row->orderNumber }}</td>
-                            <td>{{ $order_row->created_at }}</td>
-                            <td>TOTAL ORDER COST kr</td>
-                    </tr>
-                    <tr>
-                        <td colspan="1">DrinkId: {{ $order_row->drink_id }}</td>
-                        <td colspan="1">Quantity: {{ $order_row->quantity }}</td>
-                        <td colspan="1">Cost: {{ $order_row->amount }} kr</td>
-                    </tr>
+
+                    @if($loop->last)
+                        @break
+                    @endif
+                    @if($loop->first)
+                        <tr>
+                            <th>
+                                <button class="orderButton"><strong>{{ $order_row->orderNumber }}</strong></button>
+                            </th>
+                            <th>{{ $order_row->created_at }}</th>
+                            <th>{{$order_total}} kr</th>
+                        </tr>
+                        <tr>
+                            <th>Dryck Id</th>
+                            <th>Antal</th>
+                            <th>Kostnad</th>
+                        </tr>
+                        <tr class="orderItem">
+                            <td colspan="1">{{ $order_row->drink_id }}</td>
+                            <td colspan="1">{{ $order_row->quantity }}</td>
+                            <td colspan="1">{{ $order_row->amount }} kr</td>
+                        </tr>
                     @else
-                            <tr>
-                                <td colspan="1">DrinkId: {{ $order_row->drink_id }}</td>
-                                <td colspan="1">Quantity: {{ $order_row->quantity }}</td>
-                                <td colspan="1">Cost: {{ $order_row->amount }} kr</td>
-                            </tr>
+                        <tr class="orderItem">
+                            <td colspan="1">{{ $order_row->drink_id }}</td>
+                            <td colspan="1">{{ $order_row->quantity }}</td>
+                            <td colspan="1">{{ $order_row->amount }} kr</td>
+                        </tr>
 
                     @endif
 
                 @endforeach
             @endforeach
+            <tr>
+                <td colspan="2">Total kostnad</td>
+                <td>{{$sum_orders}} kr</td>
+            </tr>
             </tbody>
+
             <thead class="bg-dark text-light">
             <tr>
                 <th colspan="2">Datum</th>
@@ -54,7 +73,7 @@
             <tfoot>
             <tr>
                 <th colspan="2">Total skuld</th>
-                <td colspan="1">{{-- {{$totalPrice}} --}} kr</td>
+                <td colspan="1">{{$sum_orders - $invoice->amount}} kr</td>
             </tr>
             </tfoot>
         </table>
