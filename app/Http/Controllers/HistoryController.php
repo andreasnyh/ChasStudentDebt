@@ -127,25 +127,28 @@ class HistoryController extends Controller
         $orders = [];
         $order_row = [];
         $first_order = Order::where('student_id', $student_id)->first('orderNumber');
+        global $last_order_number;
         $last_order_number = $first_order->orderNumber;
-
+        $index = 1;
 //        Loop through all orders of a student
         foreach ($allOrders as $order) {
 
-/*            if ($last_order_number !== $order->orderNumber) {
-                $order_row[] = $order;
-                echo ("order_row not same \n");
-            }*/
 //            If it has the same ordernumber push the order to $order_row
             if ($last_order_number === $order->orderNumber) {
                 $order_row[] = $order;
-                echo ("order_row same \n");
+
             } else { // When it's not the same push the array to orders
-                $orders[] = $order_row;
+                $orders[$last_order_number] = $order_row;
+                $last_order_number = $order->orderNumber; // new last order number
                 $order_row = [];
-                echo ("store in orders \n");
+                $order_row[] = $order;
+
+//              If the amount of loops done equals length of all orders save current order to array
+                if (count($allOrders) == $index) {
+                    $orders[$last_order_number] = $order_row;
+                }
             }
-            $last_order_number = $order->orderNumber;
+            $index++;
         }
         dd($orders);
         return view('studentHistory', [
