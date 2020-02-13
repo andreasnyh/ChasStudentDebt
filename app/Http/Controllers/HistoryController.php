@@ -136,7 +136,7 @@ class HistoryController extends Controller
 //            If it has the same ordernumber push the order to $order_row
             if ($last_order_number === $order->orderNumber) {
                 $order_row[] = $order;
-                
+
 //              If the amount of loops done equals length of all orders save current order to array
                 if (count($allOrders) == $index) {
                     $orders[$last_order_number] = $order_row;
@@ -155,7 +155,7 @@ class HistoryController extends Controller
             }
             $index++;
         }
-        dd($orders);
+//        dd($orders);
         return view('studentHistory', [
             'student' => $student,
             'orders' => $orders,
