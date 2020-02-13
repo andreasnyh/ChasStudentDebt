@@ -20,7 +20,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $orders =  Order::all();
+        $orders = Order::all();
 
         return view('history', [
             'orders' => $orders
@@ -28,10 +28,10 @@ class HistoryController extends Controller
     }
 
 
-     /**
+    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
 
@@ -60,7 +60,7 @@ class HistoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($student_id)
@@ -124,8 +124,30 @@ class HistoryController extends Controller
         $drinks = Drink::all();
 
 //        for each order number push it to an array and sent to view
-        $orders=[];
-//dd($drinks);
+        $orders = [];
+        $order_row = [];
+        $first_order = Order::where('student_id', $student_id)->first('orderNumber');
+        $last_order_number = $first_order->orderNumber;
+
+//        Loop through all orders of a student
+        foreach ($allOrders as $order) {
+
+/*            if ($last_order_number !== $order->orderNumber) {
+                $order_row[] = $order;
+                echo ("order_row not same \n");
+            }*/
+//            If it has the same ordernumber push the order to $order_row
+            if ($last_order_number === $order->orderNumber) {
+                $order_row[] = $order;
+                echo ("order_row same \n");
+            } else { // When it's not the same push the array to orders
+                $orders[] = $order_row;
+                $order_row = [];
+                echo ("store in orders \n");
+            }
+            $last_order_number = $order->orderNumber;
+        }
+        dd($orders);
         return view('studentHistory', [
             'student' => $student,
             'orders' => $orders,
