@@ -36,7 +36,7 @@
     </form>
 
     <?php
-        echo "Dagens Partydjur";
+        echo "<br><h4>Dagens Partydjur</h4>";
         $num = rand(1, 10);
         $base = "https://pokeapi.co/api/v2/pokemon/";
         $id = $num;
