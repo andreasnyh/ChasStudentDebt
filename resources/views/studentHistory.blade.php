@@ -24,30 +24,29 @@
                     @if($loop->last)
                         @break
                     @endif
-
 {{--    if it's the first loop print ordernumber, date and order total. And the first order.--}}
                     @if($loop->first)
                         <tr>
                             <th>
 {{--    This is supposed to be a button for displaying the order in an accordion--}}
-                                <button class="orderButton"><strong>{{ $order_row->orderNumber }}</strong></button>
+                                <button class="orderButton" data-toggle="collapse" data-target="#collapse{{$order[0]->orderNumber}}" aria-expanded="false" aria-controls="collapseExample"><strong>{{ $order_row->orderNumber }}</strong></button>
                             </th>
                             <th>{{ $order_row->created_at }}</th>
                             <th>{{$order_total}} kr</th>
                         </tr>
 {{--    Here the sub-table should start with order info--}}
-                        <tr>
+                    <tr class="orderItem collapse" id="collapse{{$order[0]->orderNumber}}">
                             <th>Dryck Id</th>
                             <th>Antal</th>
                             <th>Kostnad</th>
                         </tr>
-                        <tr class="orderItem">
+                        <tr class="orderItem collapse" id="collapse{{$order[0]->orderNumber}}">
                             <td colspan="1">{{ $order_row->drink_id }}</td>
                             <td colspan="1">{{ $order_row->quantity }}</td>
                             <td colspan="1">{{ $order_row->amount }} kr</td>
                         </tr>
                     @else
-                        <tr class="orderItem">
+                        <tr class="orderItem collapse" id="collapse{{$order[0]->orderNumber}}">
                             <td colspan="1">{{ $order_row->drink_id }}</td>
                             <td colspan="1">{{ $order_row->quantity }}</td>
                             <td colspan="1">{{ $order_row->amount }} kr</td>

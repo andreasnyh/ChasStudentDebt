@@ -113,10 +113,12 @@ class HistoryController extends Controller
 
         $student = Student::where('id', $student_id)->first();
 
+        // Get all the orders for the given student
         $allOrders = Order::where('student_id', $student_id)
             ->orderBy('orderNumber', 'asc')
             ->get();
 
+        // Get all the invoices for the given student
         $invoices = Invoice::where('student_id', $student_id)
             ->orderBy('id', 'asc')
             ->get();
@@ -128,6 +130,8 @@ class HistoryController extends Controller
         $order_row = [];
         $first_order = Order::where('student_id', $student_id)->first('orderNumber');
         global $last_order_number;
+
+        
         $last_order_number = $first_order->orderNumber;
         $index = 1;
         $order_total = 0;
@@ -169,7 +173,7 @@ class HistoryController extends Controller
             }
             $index++;
         }
-//        dd($orders);
+      /*   dd($orders); */
 
         return view('studentHistory', [
             'student' => $student,
