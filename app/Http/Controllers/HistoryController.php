@@ -136,6 +136,11 @@ class HistoryController extends Controller
 //            If it has the same ordernumber push the order to $order_row
             if ($last_order_number === $order->orderNumber) {
                 $order_row[] = $order;
+                
+//              If the amount of loops done equals length of all orders save current order to array
+                if (count($allOrders) == $index) {
+                    $orders[$last_order_number] = $order_row;
+                }
 
             } else { // When it's not the same push the array to orders
                 $orders[$last_order_number] = $order_row;
