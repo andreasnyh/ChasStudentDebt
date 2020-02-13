@@ -11,24 +11,31 @@
             </tr>
             </thead>
             <tbody>
+
             @foreach ($orders as $order)
+                {{--                Save order total in a variable to use in child loop--}}
                 @php
                     $order_total = $order['order_total'];
                 @endphp
 
                 @foreach($order as $order_row)
 
+{{--    Break the loop if it's the last iteration, the last post is the order total and not an order--}}
                     @if($loop->last)
                         @break
                     @endif
+
+{{--    if it's the first loop print ordernumber, date and order total. And the first order.--}}
                     @if($loop->first)
                         <tr>
                             <th>
+{{--    This is supposed to be a button for displaying the order in an accordion--}}
                                 <button class="orderButton"><strong>{{ $order_row->orderNumber }}</strong></button>
                             </th>
                             <th>{{ $order_row->created_at }}</th>
                             <th>{{$order_total}} kr</th>
                         </tr>
+{{--    Here the sub-table should start with order info--}}
                         <tr>
                             <th>Dryck Id</th>
                             <th>Antal</th>
