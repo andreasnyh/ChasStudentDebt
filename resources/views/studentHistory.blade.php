@@ -36,18 +36,18 @@
                         </tr>
 {{--    Here the sub-table should start with order info--}}
                     <tr class="orderItem collapse" id="collapse{{$order[0]->orderNumber}}">
-                            <th>Dryck Id</th>
+                            <th>Dryck</th>
                             <th>Antal</th>
                             <th>Kostnad</th>
                         </tr>
                         <tr class="orderItem collapse" id="collapse{{$order[0]->orderNumber}}">
-                            <td colspan="1">{{ $order_row->drink_id }}</td>
+                            <td colspan="1">{{ $order_row->name }}</td>
                             <td colspan="1">{{ $order_row->quantity }}</td>
                             <td colspan="1">{{ $order_row->amount }} kr</td>
                         </tr>
                     @else
                         <tr class="orderItem collapse" id="collapse{{$order[0]->orderNumber}}">
-                            <td colspan="1">{{ $order_row->drink_id }}</td>
+                            <td colspan="1">{{ $order_row->name }}</td>
                             <td colspan="1">{{ $order_row->quantity }}</td>
                             <td colspan="1">{{ $order_row->amount }} kr</td>
                         </tr>

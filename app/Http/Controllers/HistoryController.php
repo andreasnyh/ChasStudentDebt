@@ -114,28 +114,34 @@ class HistoryController extends Controller
         $student = Student::where('id', $student_id)->first();
 
         // Get all the orders for the given student
+//        $allOrders = Order::where('student_id', $student_id)
+//            ->orderBy('orderNumber', 'asc')
+//            ->get();
+
         $allOrders = Order::where('student_id', $student_id)
             ->orderBy('orderNumber', 'asc')
+            ->leftJoin('drinks', 'drink_id', '=', 'drinks.id')
             ->get();
 
+//        dd($allOrders);
         // Get all the invoices for the given student
         $invoices = Invoice::where('student_id', $student_id)
             ->orderBy('id', 'asc')
             ->get();
 
-        $drinks = Drink::all();
+//        $drinks = Drink::all();
 
 //        for each order number push it to an array and sent to view
         $orders = [];
         $order_row = [];
         $first_order = Order::where('student_id', $student_id)->first('orderNumber');
-        global $last_order_number;
+//        global $last_order_number;
 
-        
         $last_order_number = $first_order->orderNumber;
         $index = 1;
         $order_total = 0;
         $sum_orders = 0;
+
 //        Loop through all orders of a student
         foreach ($allOrders as $order) {
 
@@ -156,9 +162,6 @@ class HistoryController extends Controller
                 $orders[$last_order_number] = $order_row;
                 $sum_orders += $order_total;
 
-//                $orders[$last_order_number] =  [
-//                    'item' => $order_row,
-//                    'order_total' => $order_total];
                 $last_order_number = $order->orderNumber; // new last order number
                 $order_row = [];
                 $order_total = $order->amount;
@@ -173,13 +176,14 @@ class HistoryController extends Controller
             }
             $index++;
         }
-      /*   dd($orders); */
+
+//     echo "<pre>" . print_r($orders, true) ."</pre>";
 
         return view('studentHistory', [
             'student' => $student,
             'orders' => $orders,
             'invoices' => $invoices,
-            'drinks' => $drinks,
+//            'drinks' => $drinks,
             'sum_orders' => $sum_orders
 //            'student_id' => $student_id,
 //            'name' => $name
