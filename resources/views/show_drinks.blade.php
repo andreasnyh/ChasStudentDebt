@@ -2,8 +2,6 @@
     @section('content')
     <div class="content">
 
-    
-
     <table border="1px" class="table table-striped mt-5">
         <thead class="bg-dark text-light">
 
@@ -24,21 +22,6 @@
         </tbody>
     </table>
 
-    <?php /*
-    <form method="get" action="/drinksAdd">
-        <input type="submit" value="Lägg Till"> 
-    </form>
-    <form method="get" action="/drinksEdit">
-    <input type="submit" value="Redigera">
-    </form>
-    <form method="get" action="/drinksRemove">
-    <input type="submit" value="Ta bort">
-    </form>
-    <a href="/"><button>Tillbaka till Meny</button></a>
-    </div>
-    */ ?>
-    
-
     <form method="get" action="/drinksAdd">
         <button class="btn btn-success mb-2"type="submit">Lägg Till</button>
     </form>
@@ -46,8 +29,23 @@
         <button class="btn btn-warning text-white"type="submit">Redigera</button>
     </form>
     <form action="/drinksRemove">
+        <button class="btn btn-lg bg-dark text-light mt-2" type="submit">Ta Bort</button>
+    </form>
+    <form action="/">
         <button class="btn btn-lg bg-dark text-light mt-2" type="submit">Tillbaka till Meny</button>
     </form>
+
+    <?php
+        echo "<br><h4>Dagens Partydjur</h4>";
+        $num = rand(1, 10);
+        $base = "https://pokeapi.co/api/v2/pokemon/";
+        $id = $num;
+        $data = file_get_contents($base . $id . "/");
+        $pokemon = json_decode($data);
+        $image = $pokemon->sprites->front_default;
+        echo ("<img src='$image' >");
+    ?>
+
 </div>
 
     @endsection
