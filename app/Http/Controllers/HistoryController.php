@@ -118,7 +118,8 @@ class HistoryController extends Controller
 //            ->orderBy('orderNumber', 'asc')
 //            ->get();
 
-        $allOrders = Order::where('student_id', $student_id)
+        $allOrders = Order::select('orders.orderNumber', 'orders.quantity', 'orders.amount', 'orders.created_at', 'drinks.name as drinkName')
+            ->where('student_id', $student_id)
             ->orderBy('orderNumber', 'asc')
             ->leftJoin('drinks', 'drink_id', '=', 'drinks.id')
             ->get();
@@ -141,10 +142,36 @@ class HistoryController extends Controller
         $index = 1;
         $order_total = 0;
         $sum_orders = 0;
-
+        $array1=[];
 //        Loop through all orders of a student
         foreach ($allOrders as $order) {
 
+            $s = strtotime( $order->created_at);
+
+            $date = date('d/m/Y H:i:s', $s);
+            $time = date('H:i:s A', $s);
+
+
+            if (!array_key_exists($order->orderNumber, $array1)) {
+                $array1[$order->orderNumber]['sum'] = $order->amount;
+            }else{
+
+                $array1[$order->orderNumber]['sum'] +=  $order->amount;
+            }
+
+            $array1[$order->orderNumber]['data'][] = [
+                'orderNumber' => $order->orderNumber,
+                'quantity' => $order->quantity,
+                'amount' => $order->amount,
+                'created_at' => $date ,
+                'drinkName' =>$order->drinkName
+            ];
+        }
+
+
+
+
+/*
 //            If it has the same ordernumber push the order to $order_row
             if ($last_order_number === $order->orderNumber) {
                 $order_row[] = $order;
@@ -174,9 +201,10 @@ class HistoryController extends Controller
                     $sum_orders += $order_total;
                 }
             }
-            $index++;
-        }
+            $index++;*/
 
+        echo"<pre>" . print_r($array1,true) . "</pre>";
+//dd($orders);
 //     echo "<pre>" . print_r($orders, true) ."</pre>";
 
         return view('studentHistory', [

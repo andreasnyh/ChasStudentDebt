@@ -30,6 +30,8 @@
                             <th>
 {{--    This is supposed to be a button for displaying the order in an accordion--}}
                                 <a class="orderButton" data-toggle="collapse" data-target="#collapse{{$order[0]->orderNumber}}" aria-expanded="false" aria-controls="collapseExample">{{ $order_row->orderNumber }}</a>
+
+
                             </th>
                             <th>{{$order_row->created_at}}</th>
                             <th>{{$order_total}} kr</th>

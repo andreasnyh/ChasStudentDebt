@@ -155,8 +155,9 @@ if (subtMoon) {
 }
 
 // WIP Accordion menu
-let orderBtn = document.getElementsByClassName("orderButton");
 /*
+let orderBtn = document.getElementsByClassName("orderButton");
+
 for (let i = 0; i < orderBtn.length; i++) {
     orderBtn[i].addEventListener("click", function() {
         this.classList.toggle("active");
@@ -177,7 +178,7 @@ for (let i = 0; i < orderBtn.length; i++) {
         }
     });
 }
-*/
+
 for (let i = 0; i < orderBtn.length; i++) {
     orderBtn[i].addEventListener("click", function() {
         this.classList.toggle("active");
@@ -189,3 +190,4 @@ for (let i = 0; i < orderBtn.length; i++) {
         }
     });
 }
+*/
