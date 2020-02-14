@@ -153,3 +153,39 @@ if (subtMoon) {
         }
     });
 }
+
+// WIP Accordion menu
+let orderBtn = document.getElementsByClassName("orderButton");
+/*
+for (let i = 0; i < orderBtn.length; i++) {
+    orderBtn[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        let orderItems = document.getElementsByClassName("orderItems");
+        console.log(orderItems);
+
+
+        if (orderItems.style.display === "block") {
+            orderItems.style.display = "none";
+        } else {
+            orderItems.style.display = "block";
+        }
+
+        if (orderItems.style.maxHeight) {
+            orderItems.style.maxHeight = null;
+        } else {
+            orderItems.style.maxHeight = orderItems.scrollHeight + "px";
+        }
+    });
+}
+*/
+for (let i = 0; i < orderBtn.length; i++) {
+    orderBtn[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        let panel = document.getElementsByClassName("orderItems");
+        if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+    });
+}

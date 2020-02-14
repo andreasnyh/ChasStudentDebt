@@ -12,27 +12,27 @@ class fill_invoice_table extends Seeder
      */
     public function run()
     {
-        DB::table('invoice')->insert([
+        DB::table('invoices')->insert([
             'student_id' => random_int(1,5),
             'amount' => random_int(10, 200)
         ]);
-        DB::table('invoice')->insert([
+        DB::table('invoices')->insert([
             'student_id' => random_int(1,5),
             'amount' => random_int(10, 200)
         ]);
-        DB::table('invoice')->insert([
+        DB::table('invoices')->insert([
             'student_id' => random_int(1,5),
             'amount' => random_int(10, 200)
         ]);
-        DB::table('invoice')->insert([
+        DB::table('invoices')->insert([
             'student_id' => random_int(1,5),
             'amount' => random_int(10, 200)
         ]);
-        DB::table('invoice')->insert([
+        DB::table('invoices')->insert([
             'student_id' => random_int(1,5),
             'amount' => random_int(10, 200)
         ]);
-        DB::table('invoice')->insert([
+        DB::table('invoices')->insert([
             'student_id' => random_int(1,5),
             'amount' => random_int(10, 200)
         ]);
