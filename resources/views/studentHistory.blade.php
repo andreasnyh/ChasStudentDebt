@@ -97,7 +97,7 @@
             </tr>
 
             </tbody>
-            
+
             <tfoot class="bg-dark text-light">
             <tr>
                 <th colspan="2">Total skuld</th>
@@ -112,7 +112,7 @@
                 <input hidden class="form-control" type="text" name="student_id" id="student_id"
                        value="{{$student->id}}">
                 <input type="text" class="form-control" id="deposit" name="deposit" placeholder="Amount to pay"
-                       placeholder="ex 10kr" min="0" max="{{-- {{$totalPrice}} --}}">
+                       placeholder="ex 10kr" min="0" max="{{ $sum_orders - $sum_invoices }}">
                 <div class="input-group-append">
                     <button class="btn btn-outline-success" type="submit">Pay</button>
                 </div>
