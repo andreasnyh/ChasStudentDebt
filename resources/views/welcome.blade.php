@@ -15,7 +15,7 @@
 
         <?php
             $brewKey = "0cecc2de820dc46cde46804f597e1614";
-            $url = "http://api.brewerydb.com/v2/beers/?key=$brewKey";
+            $url = "http://api.brewerydb.com/v2/beers/?hasLabels=Y&key=$brewKey";
             $databrew = file_get_contents($url);
             $brew = json_decode($databrew);
             $brewNum = rand(0, 45);
