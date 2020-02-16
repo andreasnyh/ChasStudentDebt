@@ -118,10 +118,12 @@ class HistoryController extends Controller
 //            ->orderBy('orderNumber', 'asc')
 //            ->get();
 
-        $allOrders = Order::select('orders.orderNumber', 'orders.quantity', 'orders.amount', 'orders.created_at', 'drinks.name as drinkName')
+        $allOrders = Order::select('orders.orderNumber', 'orders.quantity', 'orders.amount', 'orders.created_at',
+            'drinks.name as drinkName', 'students.name as studentName', 'students.class as studentClass')
             ->where('student_id', $student_id)
             ->orderBy('orderNumber', 'asc')
             ->leftJoin('drinks', 'drink_id', '=', 'drinks.id')
+            ->leftJoin('students', 'student_id', '=', 'students.id')
             ->get();
 
 //        dd($allOrders);
@@ -135,14 +137,14 @@ class HistoryController extends Controller
 //        for each order number push it to an array and sent to view
         $orders = [];
         $order_row = [];
-        $first_order = Order::where('student_id', $student_id)->first('orderNumber');
+//        $first_order = Order::where('student_id', $student_id)->first('orderNumber');
 //        global $last_order_number;
 
-        $last_order_number = $first_order->orderNumber;
-        $index = 1;
-        $order_total = 0;
-        $sum_orders = 0;
-        $array1=[];
+//        $last_order_number = $first_order->orderNumber;
+//        $index = 1;
+//        $order_total = 0;
+//        $sum_orders = 0;
+        $order_array=[];
 //        Loop through all orders of a student
         foreach ($allOrders as $order) {
 
@@ -152,67 +154,34 @@ class HistoryController extends Controller
             $time = date('H:i:s A', $s);
 
 
-            if (!array_key_exists($order->orderNumber, $array1)) {
-                $array1[$order->orderNumber]['sum'] = $order->amount;
+            if (!array_key_exists($order->orderNumber, $order_array)) {
+                $order_array[$order->orderNumber]['sum'] = $order->amount;
             }else{
 
-                $array1[$order->orderNumber]['sum'] +=  $order->amount;
+                $order_array[$order->orderNumber]['sum'] +=  $order->amount;
             }
 
-            $array1[$order->orderNumber]['data'][] = [
+            $order_array[$order->orderNumber]['data'][] = [
                 'orderNumber' => $order->orderNumber,
                 'quantity' => $order->quantity,
                 'amount' => $order->amount,
-                'created_at' => $date ,
+                'created_at' => $date,
+//                'studentName' => $order->studentName,
+//                'studentClass' => $order->studentClass,
                 'drinkName' =>$order->drinkName
             ];
         }
 
 
-
-
-/*
-//            If it has the same ordernumber push the order to $order_row
-            if ($last_order_number === $order->orderNumber) {
-                $order_row[] = $order;
-                $order_total += $order->amount;
-
-//              If the amount of loops done equals length of all orders save current order to array
-                if (count($allOrders) == $index) {
-                    $order_row += ['order_total' => $order_total];
-                    $orders[$last_order_number] = $order_row;
-                    $sum_orders += $order_total;
-                }
-
-            } else { // When it's not the same push the array to orders
-                $order_row += ['order_total' => $order_total];
-                $orders[$last_order_number] = $order_row;
-                $sum_orders += $order_total;
-
-                $last_order_number = $order->orderNumber; // new last order number
-                $order_row = [];
-                $order_total = $order->amount;
-                $order_row[] = $order;
-
-//              If the amount of loops done equals length of all orders save current order to array
-                if (count($allOrders) == $index) {
-                    $order_row += ['order_total' => $order_total];
-                    $orders[$last_order_number] = $order_row;
-                    $sum_orders += $order_total;
-                }
-            }
-            $index++;*/
-
-        echo"<pre>" . print_r($array1,true) . "</pre>";
+        echo"<pre>" . print_r($order_array,true) . "</pre>";
 //dd($orders);
-//     echo "<pre>" . print_r($orders, true) ."</pre>";
 
         return view('studentHistory', [
             'student' => $student,
-            'orders' => $orders,
+            'orders' => $order_array,
             'invoices' => $invoices,
 //            'drinks' => $drinks,
-            'sum_orders' => $sum_orders
+//            'sum_orders' => $sum_orders
 //            'student_id' => $student_id,
 //            'name' => $name
         ]);
