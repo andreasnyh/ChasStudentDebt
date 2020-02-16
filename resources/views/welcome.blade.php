@@ -20,7 +20,7 @@
             $brew = json_decode($databrew);
             $brewNum = rand(0, 45);
             $brewPresent = ($brew->data[$brewNum]->name);
-            $brewPic = ($brew->data[$brewNum]->labels->icon);
+            $brewPic = ($brew->data[$brewNum]->labels->medium);
             echo "<br><h4>Veckans öl:</h4>
                     <h3>$brewPresent</h3>
                     <img src=$brewPic alt='Beer logo'>";
@@ -29,6 +29,5 @@
         <p class="note">*<span class=uppercase><em>innan</span> examensdagen freeloaders</em></p>
     </div>
     @endsection
-
 
 
