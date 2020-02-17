@@ -6,6 +6,7 @@ use App\Student;
 use App\Drink;
 use App\Http\Resources\Student as StudentResource;
 use App\Http\Resources\Drink as DrinkResource;
+use Facade\FlareClient\Http\Response;
 
 
 /*
@@ -42,5 +43,7 @@ Route::get('drinks', function(){
 });
 
 Route::get('drinks/{id}', function($id){
-
+    $drink = Drink::find($id)->first();
+    return $drink;
+   
 });
