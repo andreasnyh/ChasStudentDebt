@@ -48,7 +48,7 @@ Route::get('drinks/{id}', function($id){
     if ( ! $drink)
     {
         return response()->json([
-            'message' => 'Drink not found',
+            'error' => 'Drink not found',
         ], 404);
     }
     return $drink;
