@@ -12,9 +12,22 @@
             <li class="list-group-item"><a href="/drinks">Drycker</a></li>
             <li class="list-group-item"><a href="/history">Historia</a></li>
         </ul>
+
+        <?php
+            $brewKey = "0cecc2de820dc46cde46804f597e1614";
+            $url = "http://api.brewerydb.com/v2/beers/?hasLabels=Y&key=$brewKey";
+            $databrew = file_get_contents($url);
+            $brew = json_decode($databrew);
+            $brewNum = rand(0, 45);
+            $brewPresent = ($brew->data[$brewNum]->name);
+            $brewPic = ($brew->data[$brewNum]->labels->medium);
+            echo "<br><h4>Veckans öl:</h4>
+                    <h3>$brewPresent</h3>
+                    <img src=$brewPic alt='Beer logo'>";
+        ?>
+        
         <p class="note">*<span class=uppercase><em>innan</span> examensdagen freeloaders</em></p>
     </div>
     @endsection
-
 
 
