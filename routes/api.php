@@ -6,6 +6,7 @@ use App\Student;
 use App\Drink;
 use App\Http\Resources\Student as StudentResource;
 use App\Http\Resources\Drink as DrinkResource;
+use Facade\FlareClient\Http\Response;
 
 
 /*
@@ -25,14 +26,22 @@ use App\Http\Resources\Drink as DrinkResource;
 
 
 Route::get('/students/{id}', function($id){
-    
-    return Student::find($id);
+    $student = Student::find($id);
+    if ( ! $student)
+    {
+        return response()->json([
+            'error' => 'Student not found',
+        ], 404);
+    }
+    return $student;
+   
 });
 
 Route::get('/students', function(){
 
     $students = Student::paginate(5);
     return StudentResource::collection($students);
+    
 });
 
 Route::get('drinks', function(){
@@ -42,5 +51,16 @@ Route::get('drinks', function(){
 });
 
 Route::get('drinks/{id}', function($id){
+    $drink = Drink::find($id);
 
+    if ( ! $drink)
+    {
+        return response()->json([
+            'error' => 'Drink not found',
+        ], 404);
+    }
+    return $drink;
+
+    
+   
 });
