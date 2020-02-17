@@ -26,14 +26,22 @@ use Facade\FlareClient\Http\Response;
 
 
 Route::get('/students/{id}', function($id){
-    
-    return Student::find($id);
+    $student = Student::find($id);
+    if ( ! $student)
+    {
+        return response()->json([
+            'error' => 'Student not found',
+        ], 404);
+    }
+    return $student;
+   
 });
 
 Route::get('/students', function(){
 
     $students = Student::paginate(5);
     return StudentResource::collection($students);
+    
 });
 
 Route::get('drinks', function(){
