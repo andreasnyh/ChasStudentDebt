@@ -43,7 +43,16 @@ Route::get('drinks', function(){
 });
 
 Route::get('drinks/{id}', function($id){
-    $drink = Drink::find($id)->first();
+    $drink = Drink::find($id);
+
+    if ( ! $drink)
+    {
+        return response()->json([
+            'message' => 'Drink not found',
+        ], 404);
+    }
     return $drink;
+
+    
    
 });
