@@ -11,7 +11,7 @@ if (studentClassSelect) {
     studentClassSelect.onchange = function () {
 
 
-        if(student) {
+        if (student) {
             student.removeAttribute("disabled");
             student.selectedIndex = 0;
         }
@@ -73,12 +73,12 @@ let beer_quantity = document.getElementById('beer_quantity');
 let addBeer = document.getElementById('addBeer');
 let subtBeer = document.getElementById('subtBeer');
 
-if (addBeer){
-addBeer.addEventListener("click", function () {
-    if (beer_quantity.value < 10) {
-        beer_quantity.value++;
-    }
-});
+if (addBeer) {
+    addBeer.addEventListener("click", function () {
+        if (beer_quantity.value < 10) {
+            beer_quantity.value++;
+        }
+    });
 }
 
 if (subtBeer) {
@@ -152,4 +152,16 @@ if (subtMoon) {
             moonshine_quantity.value--;
         }
     });
+}
+
+// toggle class on orders on StudentHistory
+let orderBtn = document.getElementsByClassName("orderButton");
+
+if (orderBtn) {
+    for (let i = 0; i < orderBtn.length; i++) {
+        orderBtn[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+
+        });
+    }
 }
