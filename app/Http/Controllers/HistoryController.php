@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\History;
 use App\Order;
-use App\Drink;
 use App\Student;
 use DateTime;
 
@@ -16,7 +14,7 @@ class HistoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -32,7 +30,7 @@ class HistoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
 
     public function store(Request $request)
@@ -65,57 +63,14 @@ class HistoryController extends Controller
      */
     public function show($student_id)
     {
-        // Old code
-        /*
-                // gets all orders, payments and name of this specific student
-              /*$orders = Student::find($student_id)->orders->sortByDesc('date');
-                $name = Student::find($student_id)->name;
-                $payments = History::where('student_id', $student_id)->latest()->get();
-
-                $totalPayments = 0;
-                foreach ($payments as $payment) {
-                    $totalPayments += $payment->deposit;
-                }
-
-                // fetching the price from Drinks table
-                $drink_prices = DB::table('drinks')
-                    ->leftJoin('price', 'drink_id', '=', 'drinks.id')
-                    ->get();
-
-
-                foreach ($drink_prices as $drink) {
-                    echo 'Drink: '. $drink->name .' ';
-                    echo 'Price '. $drink->price.'<br>';
-                }
-
-
-
-        /* $beer = Drink::select('cost')->where('name', 'Öl')->first();
-        $wine = Drink::select('cost')->where('name', 'Vin')->first();
-        $softdrink = Drink::select('cost')->where('name', 'Läsk')->first();
-        $moonshine = Drink::select('cost')->where('name', 'Moonshine')->first();
-
-        $ordersPrice = 0;
-
-        // For each order row. Adding to sum.
-         foreach ($orders as $order) {
-            $sumBeer= $order->beer_quantity * $beer->cost;
-            $sumWine = $order->wine_quantity * $wine->cost;
-            $sumMoonshine = $order->moonshine_quantity * $moonshine->cost;
-            $sumSoftdrink = $order->softdrink_quantity * $softdrink->cost;
-            $order->price = $sumBeer + $sumWine + $sumMoonshine + $sumSoftdrink;
-            $ordersPrice += $order->price;
-        }
-
-        //calculate the total debt
-        $totalprice = $ordersPrice - $totalPayments;
-        */
 
         $student = Student::where('id', $student_id)->first();
 
-        // Get all the orders for the given student
-        $allOrders = Order::where('student_id', $student_id)
+        $allOrders = Order::select('orders.orderNumber', 'orders.quantity', 'orders.amount', 'orders.created_at',
+            'drinks.name as drinkName')
+            ->where('student_id', $student_id)
             ->orderBy('orderNumber', 'asc')
+            ->leftJoin('drinks', 'drink_id', '=', 'drinks.id')
             ->get();
 
         // Get all the invoices for the given student
@@ -123,66 +78,50 @@ class HistoryController extends Controller
             ->orderBy('id', 'asc')
             ->get();
 
-        $drinks = Drink::all();
+        $order_array=[];
 
-//        for each order number push it to an array and sent to view
-        $orders = [];
-        $order_row = [];
-        $first_order = Order::where('student_id', $student_id)->first('orderNumber');
-        global $last_order_number;
-
-        
-        $last_order_number = $first_order->orderNumber;
-        $index = 1;
-        $order_total = 0;
-        $sum_orders = 0;
 //        Loop through all orders of a student
         foreach ($allOrders as $order) {
 
-//            If it has the same ordernumber push the order to $order_row
-            if ($last_order_number === $order->orderNumber) {
-                $order_row[] = $order;
-                $order_total += $order->amount;
+//            Convert creation timestamp to date
+            $order_made = strtotime( $order->created_at);
+            $date = date('d/m/Y H:i:s', $order_made);
 
-//              If the amount of loops done equals length of all orders save current order to array
-                if (count($allOrders) == $index) {
-                    $order_row += ['order_total' => $order_total];
-                    $orders[$last_order_number] = $order_row;
-                    $sum_orders += $order_total;
-                }
-
-            } else { // When it's not the same push the array to orders
-                $order_row += ['order_total' => $order_total];
-                $orders[$last_order_number] = $order_row;
-                $sum_orders += $order_total;
-
-//                $orders[$last_order_number] =  [
-//                    'item' => $order_row,
-//                    'order_total' => $order_total];
-                $last_order_number = $order->orderNumber; // new last order number
-                $order_row = [];
-                $order_total = $order->amount;
-                $order_row[] = $order;
-
-//              If the amount of loops done equals length of all orders save current order to array
-                if (count($allOrders) == $index) {
-                    $order_row += ['order_total' => $order_total];
-                    $orders[$last_order_number] = $order_row;
-                    $sum_orders += $order_total;
-                }
+//          If the ordernumber doesn't exist in the array set the sum
+            if (!array_key_exists($order->orderNumber, $order_array)) {
+                $order_array[$order->orderNumber]['sum'] = $order->amount;
+            }else{
+//          Otherwise add to the sum
+                $order_array[$order->orderNumber]['sum'] +=  $order->amount;
             }
-            $index++;
+
+            $order_array[$order->orderNumber]['data'][] = [
+                'orderNumber' => $order->orderNumber,
+                'quantity' => $order->quantity,
+                'amount' => $order->amount,
+                'created_at' => $date,
+                'drinkName' =>$order->drinkName
+            ];
         }
-      /*   dd($orders); */
+
+/*
+ * orders_array
+ *  [orderNumber] => array(
+ *      [sum] => 123,
+ *      [data] => array (
+ *          [0] order item data
+ *          [1] order item data
+ *          )
+ *      )
+ *  [orderNumber] => array(...)
+ */
+
+//        echo"<pre>" . print_r($order_array,true) . "</pre>";
 
         return view('studentHistory', [
             'student' => $student,
-            'orders' => $orders,
+            'orders' => $order_array,
             'invoices' => $invoices,
-            'drinks' => $drinks,
-            'sum_orders' => $sum_orders
-//            'student_id' => $student_id,
-//            'name' => $name
         ]);
     }
 }
